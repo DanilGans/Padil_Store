@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "333989466115",
+    "project_id": "padil-store",
+    "storage_bucket": "padil-store.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:333989466115:android:08541f58e838593e253e36",
+        "android_client_info": {
+          "package_name": "com.example.padil"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "333989466115-gbliddms6s4dgetq7cls7lf7fvoc2fr5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCSwMs9ScEZvajNCuBoMRVtulF7OS00Lc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "333989466115-gbliddms6s4dgetq7cls7lf7fvoc2fr5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
