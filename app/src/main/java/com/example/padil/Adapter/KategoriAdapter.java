@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.padil.Model.KategoriModel;
 import com.example.padil.R;
 
@@ -32,6 +33,8 @@ public class KategoriAdapter extends RecyclerView.Adapter<KategoriAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull KategoriAdapter.ViewHolder holder, int position) {
+
+        Glide.with(context).load(list.get(position).getImg_url()).into(holder.katImg);
 
     }
 
