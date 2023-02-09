@@ -3,7 +3,7 @@
     package="com.example.padil">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -12,6 +12,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Padil">
+        <activity
+            android:name=".SemuaProduk"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.DetailProduk"
+            android:exported="false" />
         <activity
             android:name=".OnBoard.Onboard2"
             android:exported="true" />
