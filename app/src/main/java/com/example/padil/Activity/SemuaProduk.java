@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.example.padil.Adapter.SemuaProdukAdapter;
 import com.example.padil.Model.SemuaProdukModel;
@@ -21,10 +23,10 @@ import java.util.List;
 
 public class SemuaProduk extends AppCompatActivity {
 
-    RecyclerView rvSemuaproduk;
+    RecyclerView recyclerView;
     SemuaProdukAdapter semuaProdukAdapter;
     List<SemuaProdukModel> semuaProdukModelList;
-
+    ImageView BackBtnSP;
     FirebaseFirestore firestore;
 
     @Override
@@ -32,26 +34,83 @@ public class SemuaProduk extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_semua_produk);
 
+        String type = getIntent().getStringExtra("type");
+
         firestore = FirebaseFirestore.getInstance();
 
-        rvSemuaproduk = findViewById(R.id.semua_produk);
-        rvSemuaproduk.setLayoutManager(new GridLayoutManager(this, 2));
+        BackBtnSP = findViewById(R.id.backBtnSP);
+        BackBtnSP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+        recyclerView = findViewById(R.id.show_allProdukRV);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         semuaProdukModelList = new ArrayList<>();
         semuaProdukAdapter = new SemuaProdukAdapter(this, semuaProdukModelList);
-        rvSemuaproduk.setAdapter(semuaProdukAdapter);
+        recyclerView.setAdapter(semuaProdukAdapter);
 
-        firestore.collection("Produk")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()){
-                            for (DocumentSnapshot documentSnapshot:task.getResult().getDocuments()){
+        if (type == null || type.isEmpty()){
+            firestore.collection("Produk")
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
 
-                                SemuaProdukModel semuaProdukModel = documentSnapshot.toObject(SemuaProdukModel.class)
+                            if (task.isSuccessful()){
+                                for (DocumentSnapshot doc : task.getResult().getDocuments()){
+
+                                    SemuaProdukModel semuaProdukModel = doc.toObject(SemuaProdukModel.class);
+                                    semuaProdukModelList.add(semuaProdukModel);
+                                    semuaProdukAdapter.notifyDataSetChanged();
+                                }
                             }
+
                         }
-                    }
-                });
+                    });
+        }
+
+        if (type != null && type.equalsIgnoreCase("papan_pvc")){
+            firestore.collection("Produk").whereEqualTo("type", "papan_pvc")
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                            if (task.isSuccessful()){
+                                for (DocumentSnapshot doc : task.getResult().getDocuments()){
+
+                                    SemuaProdukModel semuaProdukModel = doc.toObject(SemuaProdukModel.class);
+                                    semuaProdukModelList.add(semuaProdukModel);
+                                    semuaProdukAdapter.notifyDataSetChanged();
+                                }
+                            }
+
+                        }
+                    });
+        }
+
+        if (type != null && type.equalsIgnoreCase("aksesoris")){
+            firestore.collection("Produk").whereEqualTo("type", "aksesoris")
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                            if (task.isSuccessful()){
+                                for (DocumentSnapshot doc : task.getResult().getDocuments()){
+
+                                    SemuaProdukModel semuaProdukModel = doc.toObject(SemuaProdukModel.class);
+                                    semuaProdukModelList.add(semuaProdukModel);
+                                    semuaProdukAdapter.notifyDataSetChanged();
+                                }
+                            }
+
+                        }
+                    });
+        }
+
     }
 }

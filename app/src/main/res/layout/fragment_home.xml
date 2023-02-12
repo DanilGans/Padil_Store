@@ -111,6 +111,18 @@
                     android:textColor="@color/main">
                 </TextView>
 
+                <TextView
+                    android:id="@+id/lihat_spBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="5dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Lihat Semua Produk"
+                    android:textColor="@color/oren"
+                    android:textSize="14sp">
+                </TextView>
+
             </RelativeLayout>
 
             <androidx.recyclerview.widget.RecyclerView

@@ -4,27 +4,19 @@ import java.io.Serializable;
 
 public class SemuaProdukModel implements Serializable {
 
-    String nama, deskripsi, tagline, img_url, type;
+    String deskripsi, img_url, nama, type, tagline;
     int harga;
 
     public SemuaProdukModel() {
     }
 
-    public SemuaProdukModel(String nama, String deskripsi, String tagline, String img_url, String type, int harga) {
-        this.nama = nama;
+    public SemuaProdukModel(String deskripsi, String img_url, String nama, String type, String tagline, int harga) {
         this.deskripsi = deskripsi;
-        this.tagline = tagline;
         this.img_url = img_url;
+        this.nama = nama;
+        this.tagline = tagline;
         this.type = type;
         this.harga = harga;
-    }
-
-    public String getNama() {
-        return nama;
-    }
-
-    public void setNama(String nama) {
-        this.nama = nama;
     }
 
     public String getDeskripsi() {
@@ -35,20 +27,20 @@ public class SemuaProdukModel implements Serializable {
         this.deskripsi = deskripsi;
     }
 
-    public String getTagline() {
-        return tagline;
-    }
-
-    public void setTagline(String tagline) {
-        this.tagline = tagline;
-    }
-
     public String getImg_url() {
         return img_url;
     }
 
     public void setImg_url(String img_url) {
         this.img_url = img_url;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
     }
 
     public String getType() {
@@ -65,5 +57,13 @@ public class SemuaProdukModel implements Serializable {
 
     public void setHarga(int harga) {
         this.harga = harga;
+    }
+
+    public String getTagline() {
+        return tagline;
+    }
+
+    public void setTagline(String tagline) {
+        this.tagline = tagline;
     }
 }

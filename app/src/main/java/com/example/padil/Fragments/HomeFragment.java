@@ -2,10 +2,10 @@ package com.example.padil.Fragments;
 
 import static android.content.ContentValues.TAG;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,7 +14,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.example.padil.Activity.SemuaProduk;
 import com.example.padil.Adapter.KategoriAdapter;
 import com.example.padil.Adapter.ProdukPopulerAdapter;
 import com.example.padil.Model.KategoriModel;
@@ -25,7 +27,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.squareup.okhttp.internal.DiskLruCache;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +37,7 @@ public class HomeFragment extends Fragment {
     RecyclerView katRecyclerview, populerProdukRV;
     KategoriAdapter kategoriAdapter;
     List<KategoriModel> kategoriModelList;
+    TextView lihat_spBtn;
 
     //Populer Produk
     ProdukPopulerAdapter produkPopulerAdapter;
@@ -57,6 +59,15 @@ public class HomeFragment extends Fragment {
 
         katRecyclerview = root.findViewById(R.id.rec_kategori);
         populerProdukRV = root.findViewById(R.id.produk_populer);
+        lihat_spBtn = root.findViewById(R.id.lihat_spBtn);
+
+        lihat_spBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), SemuaProduk.class);
+                startActivity(intent);
+            }
+        });
 
         db = FirebaseFirestore.getInstance();
 

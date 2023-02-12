@@ -7,7 +7,7 @@
     tools:context=".Activity.DetailProduk">
 
     <ImageView
-        android:id="@+id/imageView10"
+        android:id="@+id/backBtnDP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -27,7 +27,7 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.197"
-        app:layout_constraintStart_toEndOf="@+id/imageView10"
+        app:layout_constraintStart_toEndOf="@+id/backBtnDP"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.cardview.widget.CardView
@@ -41,7 +41,7 @@
         app:cardCornerRadius="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView10">
+        app:layout_constraintTop_toBottomOf="@+id/backBtnDP">
 
         <ImageView
             android:id="@+id/img_produk"
@@ -61,7 +61,7 @@
         android:fontFamily="@font/poppins_semibold"
         android:text="Nama Produk"
         android:textColor="@color/main"
-        android:textSize="20sp"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
 

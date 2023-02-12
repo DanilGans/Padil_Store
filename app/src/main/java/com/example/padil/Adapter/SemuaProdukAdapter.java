@@ -1,6 +1,7 @@
 package com.example.padil.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.padil.Activity.SemuaProduk;
+import com.example.padil.Activity.DetailProduk;
 import com.example.padil.Model.SemuaProdukModel;
 import com.example.padil.R;
 
@@ -22,22 +23,33 @@ public class SemuaProdukAdapter extends RecyclerView.Adapter<SemuaProdukAdapter.
     private Context context;
     private List<SemuaProdukModel> list;
 
-    public SemuaProdukAdapter(SemuaProduk semuaProduk, List<SemuaProdukModel> semuaProdukModelList) {
+    public SemuaProdukAdapter(Context context, List<SemuaProdukModel> list) {
+        this.context = context;
+        this.list = list;
     }
 
     @NonNull
     @Override
     public SemuaProdukAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.semua_produk, parent, false));
+        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.show_all_produk, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull SemuaProdukAdapter.ViewHolder holder, int position) {
 
-        Glide.with(context).load(list.get(position).getImg_url()).into(holder.SPimage);
-        holder.SPnama.setText(list.get(position).getNama());
-        holder.SPtag.setText(list.get(position).getTagline());
-        holder.SPharga.setText(list.get(position).getHarga());
+        Glide.with(context).load(list.get(position).getImg_url()).into(holder.mItemImage);
+        holder.mCost.setText("Rp "+list.get(position).getHarga());
+        holder.mTag.setText(list.get(position).getTagline());
+        holder.mName.setText(list.get(position).getNama());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, DetailProduk.class);
+                intent.putExtra("detailproduk", list.get(position));
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -47,17 +59,16 @@ public class SemuaProdukAdapter extends RecyclerView.Adapter<SemuaProdukAdapter.
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private ImageView SPimage;
-        private TextView SPnama, SPtag, SPharga;
+        private ImageView mItemImage;
+        private TextView mCost, mName, mTag;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            SPimage = itemView.findViewById(R.id.semuaproduk_img);
-            SPnama = itemView.findViewById(R.id.nama_sp);
-            SPtag = itemView.findViewById(R.id.tag_sp);
-            SPharga = itemView.findViewById(R.id.harga_sp);
-
+            mItemImage = itemView.findViewById(R.id.item_image);
+            mCost = itemView.findViewById(R.id.item_cost);
+            mTag = itemView.findViewById(R.id.item_tag);
+            mName = itemView.findViewById(R.id.item_name);
         }
     }
 }

@@ -6,19 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".Activity.SemuaProduk">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/semua_produk"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView9">
-    </androidx.recyclerview.widget.RecyclerView>
-
     <ImageView
-        android:id="@+id/imageView9"
+        android:id="@+id/backBtnSP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -27,18 +16,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/backbtnbiru" />
 
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="wrap_content"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/show_allProdukRV"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="30dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="Produk"
-        android:textColor="@color/main"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView9"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        android:elevation="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/backBtnSP" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
