@@ -13,6 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Padil">
         <activity
+            android:name=".Activity.Notifikasi"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.Keranjang"
+            android:exported="false" />
+        <activity
             android:name=".Activity.SemuaProduk"
             android:exported="false" />
         <activity

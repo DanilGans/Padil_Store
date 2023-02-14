@@ -3,6 +3,7 @@ package com.example.padil.Activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,10 +15,13 @@ import com.example.padil.Model.ProdukPopulerModel;
 import com.example.padil.Model.SemuaProdukModel;
 import com.example.padil.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -39,6 +43,7 @@ public class DetailProduk extends AppCompatActivity {
     SemuaProdukModel semuaProdukModel = null;
 
     FirebaseAuth auth;
+
     private FirebaseFirestore firestore;
 
     @Override
@@ -62,6 +67,7 @@ public class DetailProduk extends AppCompatActivity {
         hargaProduk = findViewById(R.id.harga_produk);
         deskripsiProduk = findViewById(R.id.isi_desk);
         Kuantiti = findViewById(R.id.kuantiti);
+
 
         addItem = findViewById(R.id.additem);
         removeItem = findViewById(R.id.removeitem);
@@ -162,6 +168,6 @@ public class DetailProduk extends AppCompatActivity {
                 }
             }
         });
-
     }
+
 }
