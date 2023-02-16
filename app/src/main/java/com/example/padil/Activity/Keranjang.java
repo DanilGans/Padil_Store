@@ -2,14 +2,19 @@ package com.example.padil.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.padil.Adapter.KeranjangAdapter;
@@ -26,15 +31,24 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class Keranjang extends AppCompatActivity {
+
+    Locale localeID = new Locale("in", "ID");
+    NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
+
+    int SemuaTotalHarga;
 
     RecyclerView recyclerView;
     List<KeranjangModel> keranjangModelList;
     KeranjangAdapter keranjangAdapter;
     BottomNavigationView nav;
+
+    TextView totalHargaCart;
 
     private FirebaseAuth auth;
     private FirebaseFirestore firestore;
@@ -46,6 +60,11 @@ public class Keranjang extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
+
+        totalHargaCart = findViewById(R.id.totalharga_cart);
+
+        LocalBroadcastManager.getInstance(this)
+                .registerReceiver(mMessageReceiver, new IntentFilter("MyTotalHarga"));
 
         recyclerView = findViewById(R.id.keranjang_rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -99,4 +118,12 @@ public class Keranjang extends AppCompatActivity {
         });
 
     }
+
+    public BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            int totalBill = intent.getIntExtra("totalHargaSemua", 0);
+            totalHargaCart.setText(formatRupiah.format((double) + totalBill));
+        }
+    };
 }

@@ -25,27 +25,36 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/keranjang_rv"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="10dp"
         app:layout_constraintBottom_toTopOf="@+id/cardView3"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:listitem="@layout/list_keranjang"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView11"
-        app:layout_constraintVertical_bias="0.005" />
+        app:layout_constraintVertical_bias="0.005"
+        tools:listitem="@layout/list_keranjang" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView3"
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:layout_marginBottom="10dp"
         app:cardCornerRadius="5dp"
-        android:layout_marginBottom="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center"
+            android:text="Total Harga : "
+            android:textColor="@color/main"
+            android:textSize="16sp"></TextView>
 
         <TextView
             android:id="@+id/totalharga_cart"
@@ -54,11 +63,31 @@
             android:layout_gravity="right|center"
             android:layout_marginRight="20dp"
             android:fontFamily="@font/poppins_medium"
-            android:text="Total Harga : Rp 200.000"
+            android:text="Rp 0"
             android:textColor="@color/main"
             android:textSize="16sp"></TextView>
 
     </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="300dp"
+        android:layout_marginTop="10dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="15dp"
+        android:backgroundTint="@color/main"
+        android:fontFamily="@font/poppins_medium"
+        android:gravity="center"
+        android:padding="5dp"
+        android:textStyle="bold"
+        android:text="Bayar Sekarang"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"></Button>
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"

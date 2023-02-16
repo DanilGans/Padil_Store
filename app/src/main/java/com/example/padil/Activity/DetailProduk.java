@@ -3,6 +3,7 @@ package com.example.padil.Activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -20,6 +21,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -104,6 +106,14 @@ public class DetailProduk extends AppCompatActivity {
             totalHarga = semuaProdukModel.getHarga() * totalKuantiti;
         }
 
+        //Beli Sekarang
+        buyNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DetailProduk.this, AlamatPengiriman.class));
+            }
+        });
+
         //Tambah ke keranjang
         addtoCart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,7 +132,7 @@ public class DetailProduk extends AppCompatActivity {
                 final HashMap<String, Object> cartMap = new HashMap<>();
 
                 cartMap.put("namaProduk", namaProduk.getText().toString());
-                cartMap.put("hargaProduk", hargaProduk.getText().toString());
+                cartMap.put("hargaProduk", hargaProduk.getText());
                 cartMap.put("currentDate", saveCurrentDate);
                 cartMap.put("currentTime", saveCurrentTime);
                 cartMap.put("totalKuantiti", Kuantiti.getText().toString());
@@ -133,10 +143,12 @@ public class DetailProduk extends AppCompatActivity {
                         .collection("User").add(cartMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                             @Override
                             public void onComplete(@NonNull Task<DocumentReference> task) {
+
                                 Toast.makeText(DetailProduk.this, "Berhasil memasukan ke keranjang", Toast.LENGTH_SHORT).show();
                                 finish();
                             }
                         });
+
             }
         });
 

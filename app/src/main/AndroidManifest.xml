@@ -13,6 +13,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Padil">
         <activity
+            android:name=".Activity.Pembayaran"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.TambahAlamat"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.AlamatPengiriman"
+            android:exported="false" />
+        <activity
             android:name=".Activity.Notifikasi"
             android:exported="false" />
         <activity

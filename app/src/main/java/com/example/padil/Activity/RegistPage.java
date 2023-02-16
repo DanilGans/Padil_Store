@@ -1,5 +1,7 @@
 package com.example.padil.Activity;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -14,15 +17,25 @@ import android.widget.Toast;
 import com.example.padil.OnBoard.Onboard2;
 import com.example.padil.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class RegistPage extends AppCompatActivity {
 
     EditText formNama, formNope, formEmail, formPassword;
 
     private FirebaseAuth auth;
+    FirebaseFirestore firestore;
+    String userID;
 
 
     @Override
@@ -31,6 +44,8 @@ public class RegistPage extends AppCompatActivity {
         setContentView(R.layout.activity_regist_page);
 
         auth = FirebaseAuth.getInstance();
+        firestore = FirebaseFirestore.getInstance();
+
         if (auth.getCurrentUser() != null){
 
             startActivity(new Intent(RegistPage.this, MainActivity.class));
@@ -81,7 +96,26 @@ public class RegistPage extends AppCompatActivity {
 
                         if (task.isSuccessful()){
                             Toast.makeText(RegistPage.this, "Akun Anda Berhasil Didaftarkan!", Toast.LENGTH_SHORT).show();
+                            userID = auth.getCurrentUser().getUid();
+                            DocumentReference documentReference = firestore.collection("Users").document(userID);
+                            Map<String,Object> user = new HashMap<>();
+                            user.put("Nama Lengkap", userNama);
+                            user.put("Nomor Handphone", userNope);
+                            user.put("Email Address", userEmail);
+                            documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    Log.d(TAG, "User berhasil didaftarkan untuk "+userID);
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.d(TAG, "On Failure : "+ e.toString());
+                                }
+                            });
+
                             startActivity(new Intent(RegistPage.this, MainActivity.class));
+
                         }else{
                             Toast.makeText(RegistPage.this, "Akun Anda Gagal Didaftarkan!"+task.getException(), Toast.LENGTH_SHORT).show();
                         }
