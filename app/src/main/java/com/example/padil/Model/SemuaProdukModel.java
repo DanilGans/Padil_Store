@@ -4,19 +4,28 @@ import java.io.Serializable;
 
 public class SemuaProdukModel implements Serializable {
 
-    String deskripsi, img_url, nama, type, tagline;
+    String id, deskripsi, img_url, nama, type, tagline;
     int harga;
 
     public SemuaProdukModel() {
     }
 
-    public SemuaProdukModel(String deskripsi, String img_url, String nama, String type, String tagline, int harga) {
+    public SemuaProdukModel(String id, String deskripsi, String img_url, String nama, String type, String tagline, int harga) {
         this.deskripsi = deskripsi;
+        this.id = id;
         this.img_url = img_url;
         this.nama = nama;
         this.tagline = tagline;
         this.type = type;
         this.harga = harga;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getDeskripsi() {

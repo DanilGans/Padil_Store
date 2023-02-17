@@ -1,11 +1,14 @@
 package com.example.padil.Activity;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,10 +19,13 @@ import com.example.padil.Model.ProdukPopulerModel;
 import com.example.padil.Model.SemuaProdukModel;
 import com.example.padil.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.storage.FirebaseStorage;
@@ -117,37 +123,97 @@ public class DetailProduk extends AppCompatActivity {
         //Tambah ke keranjang
         addtoCart.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v){
 
-                String saveCurrentTime, saveCurrentDate;
+                if (semuaProdukModel != null){
+                    String imageUrl = semuaProdukModel.getImg_url();
+                    String productName = semuaProdukModel.getNama();
 
-                Calendar callForDate = Calendar.getInstance();
+                    final HashMap<String, Object> cartMap = new HashMap<>();
 
-                SimpleDateFormat currentDate = new SimpleDateFormat("MM dd, yyyy");
-                saveCurrentDate = currentDate.format(callForDate.getTime());
+                    cartMap.put("namaProduk", productName);
+                    cartMap.put("hargaProduk", hargaProduk.getText());
+                    cartMap.put("img_url", imageUrl);
+                    cartMap.put("totalKuantiti", Kuantiti.getText().toString());
+                    cartMap.put("totalHarga", totalHarga);
 
-                SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
-                saveCurrentTime = currentTime.format(callForDate.getTime());
+                    firestore.collection("Keranjang").document(auth.getCurrentUser().getUid())
+                            .collection("User").add(cartMap).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                @Override
+                                public void onSuccess(DocumentReference documentReference) {
+                                    Toast.makeText(DetailProduk.this, "Berhasil memasukan ke keranjang", Toast.LENGTH_SHORT).show();
+                                    finish();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.w(TAG, "Gagal menambahkan produk tersebut ", e);
+                                }
+                            });
+                }
 
-                final HashMap<String, Object> cartMap = new HashMap<>();
+                if (produkPopulerModel != null){
+                    String imageUrl = produkPopulerModel.getImg_url();
+                    String productName = produkPopulerModel.getNama();
 
-                cartMap.put("namaProduk", namaProduk.getText().toString());
-                cartMap.put("hargaProduk", hargaProduk.getText());
-                cartMap.put("currentDate", saveCurrentDate);
-                cartMap.put("currentTime", saveCurrentTime);
-                cartMap.put("totalKuantiti", Kuantiti.getText().toString());
-                cartMap.put("totalHarga", totalHarga);
+                    final HashMap<String, Object> cartMap = new HashMap<>();
 
-                firestore.collection("Keranjang").document
-                        (auth.getCurrentUser().getUid())
-                        .collection("User").add(cartMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-                            @Override
-                            public void onComplete(@NonNull Task<DocumentReference> task) {
+                    cartMap.put("namaProduk", productName);
+                    cartMap.put("hargaProduk", hargaProduk.getText());
+                    cartMap.put("img_url", imageUrl);
+                    cartMap.put("totalKuantiti", Kuantiti.getText().toString());
+                    cartMap.put("totalHarga", totalHarga);
 
-                                Toast.makeText(DetailProduk.this, "Berhasil memasukan ke keranjang", Toast.LENGTH_SHORT).show();
-                                finish();
-                            }
-                        });
+                    firestore.collection("Keranjang").document(auth.getCurrentUser().getUid())
+                            .collection("User").add(cartMap).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                @Override
+                                public void onSuccess(DocumentReference documentReference) {
+                                    Toast.makeText(DetailProduk.this, "Berhasil memasukan ke keranjang", Toast.LENGTH_SHORT).show();
+                                    finish();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.w(TAG, "Gagal menambahkan produk tersebut ", e);
+                                }
+                            });
+                }
+
+                //String imageUrl2 = produkPopulerModel.getImg_url();
+
+
+                //String productName2 = produkPopulerModel.getNama();
+
+
+               //String saveCurrentTime, saveCurrentDate;
+
+                // Calendar callForDate = Calendar.getInstance();
+
+                //SimpleDateFormat currentDate = new SimpleDateFormat("MM dd, yyyy");
+                //saveCurrentDate = currentDate.format(callForDate.getTime());
+
+                //SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
+                //saveCurrentTime = currentTime.format(callForDate.getTime());
+
+                //final HashMap<String, Object> cartMap = new HashMap<>();
+
+                //cartMap.put("namaProduk", namaProduk.getText().toString());
+                //cartMap.put("hargaProduk", hargaProduk.getText());
+                //cartMap.put("currentDate", saveCurrentDate);
+                //cartMap.put("currentTime", saveCurrentTime);
+                //cartMap.put("totalKuantiti", Kuantiti.getText().toString());
+                //cartMap.put("totalHarga", totalHarga);
+
+                //firestore.collection("Keranjang").document
+                //        (auth.getCurrentUser().getUid())
+                //       .collection("User").add(cartMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                //            @Override
+                //           public void onComplete(@NonNull Task<DocumentReference> task) {
+
+                //                Toast.makeText(DetailProduk.this, "Berhasil memasukan ke keranjang", Toast.LENGTH_SHORT).show();
+                //                finish();
+                //           }
+                //        });
 
             }
         });
