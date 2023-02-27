@@ -10,7 +10,7 @@
         android:icon="@drawable/baseline_shopping_cart_24"
         android:id="@+id/cartNav"/>
     <item
-        android:title="Notifikasi"
-        android:icon="@drawable/baseline_notifications_24"
-        android:id="@+id/notifNav"/>
+        android:title="User"
+        android:icon="@drawable/baseline_manage_accounts_24"
+        android:id="@+id/userNav"/>
 </menu>

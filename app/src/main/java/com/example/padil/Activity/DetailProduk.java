@@ -31,11 +31,16 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Locale;
 
 public class DetailProduk extends AppCompatActivity {
+
+    Locale localeID = new Locale("in", "ID");
+    NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
 
     ImageView imgProduk;
     TextView namaProduk, hargaProduk, deskripsiProduk, Kuantiti;
@@ -95,7 +100,7 @@ public class DetailProduk extends AppCompatActivity {
         if (produkPopulerModel != null){
             Glide.with(getApplicationContext()).load(produkPopulerModel.getImg_url()).into(imgProduk);
             namaProduk.setText(produkPopulerModel.getNama());
-            hargaProduk.setText(String.valueOf(produkPopulerModel.getHarga()));
+            hargaProduk.setText(formatRupiah.format((double)+produkPopulerModel.getHarga()));
             deskripsiProduk.setText(produkPopulerModel.getDeskripsi());
 
             totalHarga = produkPopulerModel.getHarga() * totalKuantiti;
@@ -106,7 +111,7 @@ public class DetailProduk extends AppCompatActivity {
         if (semuaProdukModel != null){
             Glide.with(getApplicationContext()).load(semuaProdukModel.getImg_url()).into(imgProduk);
             namaProduk.setText(semuaProdukModel.getNama());
-            hargaProduk.setText(String.valueOf(semuaProdukModel.getHarga()));
+            hargaProduk.setText(formatRupiah.format((double)+semuaProdukModel.getHarga()));
             deskripsiProduk.setText(semuaProdukModel.getDeskripsi());
 
             totalHarga = semuaProdukModel.getHarga() * totalKuantiti;
@@ -116,7 +121,16 @@ public class DetailProduk extends AppCompatActivity {
         buyNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(DetailProduk.this, AlamatPengiriman.class));
+                Intent intent = new Intent(DetailProduk.this, AlamatPengiriman.class);
+
+                if (produkPopulerModel != null){
+                    intent.putExtra("item", produkPopulerModel);
+                }
+                if (semuaProdukModel != null){
+                    intent.putExtra("item", semuaProdukModel);
+                }
+                startActivity(intent);
+
             }
         });
 
@@ -178,42 +192,6 @@ public class DetailProduk extends AppCompatActivity {
                                 }
                             });
                 }
-
-                //String imageUrl2 = produkPopulerModel.getImg_url();
-
-
-                //String productName2 = produkPopulerModel.getNama();
-
-
-               //String saveCurrentTime, saveCurrentDate;
-
-                // Calendar callForDate = Calendar.getInstance();
-
-                //SimpleDateFormat currentDate = new SimpleDateFormat("MM dd, yyyy");
-                //saveCurrentDate = currentDate.format(callForDate.getTime());
-
-                //SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
-                //saveCurrentTime = currentTime.format(callForDate.getTime());
-
-                //final HashMap<String, Object> cartMap = new HashMap<>();
-
-                //cartMap.put("namaProduk", namaProduk.getText().toString());
-                //cartMap.put("hargaProduk", hargaProduk.getText());
-                //cartMap.put("currentDate", saveCurrentDate);
-                //cartMap.put("currentTime", saveCurrentTime);
-                //cartMap.put("totalKuantiti", Kuantiti.getText().toString());
-                //cartMap.put("totalHarga", totalHarga);
-
-                //firestore.collection("Keranjang").document
-                //        (auth.getCurrentUser().getUid())
-                //       .collection("User").add(cartMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-                //            @Override
-                //           public void onComplete(@NonNull Task<DocumentReference> task) {
-
-                //                Toast.makeText(DetailProduk.this, "Berhasil memasukan ke keranjang", Toast.LENGTH_SHORT).show();
-                //                finish();
-                //           }
-                //        });
 
             }
         });

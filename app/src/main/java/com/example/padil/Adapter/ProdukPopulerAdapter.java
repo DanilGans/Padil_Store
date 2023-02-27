@@ -17,9 +17,14 @@ import com.example.padil.Activity.DetailProduk;
 import com.example.padil.Model.ProdukPopulerModel;
 import com.example.padil.R;
 
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class ProdukPopulerAdapter extends RecyclerView.Adapter<ProdukPopulerAdapter.ViewHolder> {
+
+    Locale localeID = new Locale("in", "ID");
+    NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
 
     private Context context;
     private List<ProdukPopulerModel> list;
@@ -41,7 +46,7 @@ public class ProdukPopulerAdapter extends RecyclerView.Adapter<ProdukPopulerAdap
         Glide.with(context).load(list.get(position).getImg_url()).into(holder.newImg);
         holder.newNama.setText(list.get(position).getNama());
         holder.newTag.setText(list.get(position).getTagline());
-        holder.newHarga.setText(String.valueOf(list.get(position).getHarga()));
+        holder.newHarga.setText(formatRupiah.format((double)list.get(position).getHarga()));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

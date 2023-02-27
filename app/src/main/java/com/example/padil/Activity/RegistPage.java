@@ -107,11 +107,6 @@ public class RegistPage extends AppCompatActivity {
                                 public void onSuccess(Void unused) {
                                     Log.d(TAG, "User berhasil didaftarkan untuk "+userID);
                                 }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.d(TAG, "On Failure : "+ e.toString());
-                                }
                             });
 
                             startActivity(new Intent(RegistPage.this, MainActivity.class));

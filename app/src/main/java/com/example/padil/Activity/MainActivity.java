@@ -1,6 +1,7 @@
 package com.example.padil.Activity;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -9,23 +10,54 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.example.padil.Fragments.HomeFragment;
 import com.example.padil.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity {
 
     Fragment homeFragment;
     BottomNavigationView nav;
+    TextView NamaUser;
+    FirebaseAuth auth;
+    FirebaseFirestore firestore;
+    String userID;
+
+    CircleImageView avatar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        auth = FirebaseAuth.getInstance();
+        firestore = FirebaseFirestore.getInstance();
+        userID = auth.getCurrentUser().getUid();
+
         nav = findViewById(R.id.bottomNavigationView);
+        avatar = findViewById(R.id.avatar);
+        NamaUser = findViewById(R.id.username);
+
+        DocumentReference docRef = firestore.collection("Users").document(userID);
+        docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                NamaUser.setText("Hi, " + value.getString("Nama Lengkap"));
+            }
+        });
+
 
         Menu menu = nav.getMenu();
         MenuItem menuItem = menu.getItem(0);
@@ -45,8 +77,8 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent1);
                         break;
 
-                    case R.id.notifNav:
-                        Intent intent2 = new Intent(MainActivity.this, Notifikasi.class);
+                    case R.id.userNav:
+                        Intent intent2 = new Intent(MainActivity.this, Profile.class);
                         startActivity(intent2);
                         break;
                 }

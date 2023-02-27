@@ -16,10 +16,14 @@ import com.example.padil.Activity.DetailProduk;
 import com.example.padil.Model.SemuaProdukModel;
 import com.example.padil.R;
 
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class SemuaProdukAdapter extends RecyclerView.Adapter<SemuaProdukAdapter.ViewHolder> {
 
+    Locale localeID = new Locale("in", "ID");
+    NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
     private Context context;
     private List<SemuaProdukModel> list;
 
@@ -38,7 +42,7 @@ public class SemuaProdukAdapter extends RecyclerView.Adapter<SemuaProdukAdapter.
     public void onBindViewHolder(@NonNull SemuaProdukAdapter.ViewHolder holder, int position) {
 
         Glide.with(context).load(list.get(position).getImg_url()).into(holder.mItemImage);
-        holder.mCost.setText("Rp "+list.get(position).getHarga());
+        holder.mCost.setText(formatRupiah.format((double) +list.get(position).getHarga()));
         holder.mTag.setText(list.get(position).getTagline());
         holder.mName.setText(list.get(position).getNama());
 

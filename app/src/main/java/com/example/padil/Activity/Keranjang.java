@@ -13,6 +13,8 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -41,13 +43,11 @@ public class Keranjang extends AppCompatActivity {
     Locale localeID = new Locale("in", "ID");
     NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
 
-    int SemuaTotalHarga;
-
     RecyclerView recyclerView;
     List<KeranjangModel> keranjangModelList;
     KeranjangAdapter keranjangAdapter;
     BottomNavigationView nav;
-
+    Button bayarsekarang;
     TextView totalHargaCart;
 
     private FirebaseAuth auth;
@@ -60,6 +60,14 @@ public class Keranjang extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
+
+        bayarsekarang = findViewById(R.id.bayarsekarangBtn);
+        bayarsekarang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Keranjang.this, DetailTransaksi.class));
+            }
+        });
 
         totalHargaCart = findViewById(R.id.totalharga_cart);
 
@@ -107,8 +115,8 @@ public class Keranjang extends AppCompatActivity {
 
                         break;
 
-                    case R.id.notifNav:
-                        Intent intent2 = new Intent(Keranjang.this, Notifikasi.class);
+                    case R.id.userNav:
+                        Intent intent2 = new Intent(Keranjang.this, Profile.class);
                         startActivity(intent2);
                         break;
                 }

@@ -5,58 +5,61 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.padil.Model.KeranjangModel;
+import com.example.padil.Model.DetailTransaksiModel;
 import com.example.padil.R;
 
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
 
-public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangAdapter.ViewHolder> {
+public class DetailTransaksiAdapter extends RecyclerView.Adapter<DetailTransaksiAdapter.ViewHolder> {
 
     Locale localeID = new Locale("in", "ID");
     NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
 
     Context context;
-    List<KeranjangModel> list;
+    List<DetailTransaksiModel> list;
 
-    int totalHargaSemua = 0;
+    int SubTotal = 0;
+    int TotalSemuaKP = 0;
 
-    public KeranjangAdapter(Context context, List<KeranjangModel> list) {
+    public DetailTransaksiAdapter(Context context, List<DetailTransaksiModel> list) {
         this.context = context;
         this.list = list;
     }
 
     @NonNull
     @Override
-    public KeranjangAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public DetailTransaksiAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.list_keranjang, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull KeranjangAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull DetailTransaksiAdapter.ViewHolder holder, int position) {
         holder.namaProduk.setText(list.get(position).getNamaProduk());
         holder.hargaProduk.setText("Rp "+ list.get(position).getHargaProduk());
         holder.totalHarga.setText(String.valueOf(formatRupiah.format((double)list.get(position).getTotalHarga())));
         holder.totalKuantiti.setText("Qty "+list.get(position).getTotalKuantiti());
-
         Glide.with(context).load(list.get(position).getImg_url()).into(holder.productImage);
 
-        totalHargaSemua = totalHargaSemua + list.get(position).getTotalHarga();
-        Intent intent = new Intent("MyTotalHarga");
-        intent.putExtra("totalHargaSemua", totalHargaSemua);
+        SubTotal = SubTotal + list.get(position).getTotalHarga();
+        Intent intentSub = new Intent ("MySubTotal");
+        intentSub.putExtra("subTotalDT", SubTotal);
+        LocalBroadcastManager.getInstance(context).sendBroadcast(intentSub);
 
-        LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+        TotalSemuaKP = TotalSemuaKP + SubTotal;
+        Intent intentKP = new Intent ("MyTotalKP");
+        intentKP.putExtra("totalKP", TotalSemuaKP);
+        LocalBroadcastManager.getInstance(context).sendBroadcast(intentKP);
+
 
     }
 
@@ -67,7 +70,7 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangAdapter.View
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView namaProduk, hargaProduk, totalHarga, totalKuantiti;
+        TextView namaProduk, hargaProduk, totalHarga, totalKuantiti, subtotalDT, ongkirDT, totalDT;
         ImageView productImage;
 
         public ViewHolder(@NonNull View itemView) {
@@ -78,7 +81,9 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangAdapter.View
             totalHarga = itemView.findViewById(R.id.total_price);
             totalKuantiti = itemView.findViewById(R.id.total_quantity);
             productImage = itemView.findViewById(R.id.product_image);
-
+            subtotalDT = itemView.findViewById(R.id.subtotalDT);
+            ongkirDT = itemView.findViewById(R.id.ongkirDT);
+            totalDT = itemView.findViewById(R.id.totalDT);
         }
     }
 }

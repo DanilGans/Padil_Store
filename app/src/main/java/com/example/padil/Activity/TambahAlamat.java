@@ -82,6 +82,7 @@ public class TambahAlamat extends AppCompatActivity {
                                     if (task.isSuccessful()){
                                         Toast.makeText(TambahAlamat.this, "Alamat telah ditambahkan!", Toast.LENGTH_SHORT).show();
                                         startActivity(new Intent(TambahAlamat.this, AlamatPengiriman.class));
+                                        finish();
                                     }
                                 }
                             });

@@ -51,18 +51,6 @@
             app:layout_constraintTop_toBottomOf="@+id/nama_pp" />
 
         <TextView
-            android:id="@+id/rupiah"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/poppins_medium"
-            android:text="Rp "
-            android:textColor="@color/oren"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toStartOf="@+id/harga_pp"
-            app:layout_constraintTop_toBottomOf="@+id/tag_pp" />
-
-        <TextView
             android:id="@+id/harga_pp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
