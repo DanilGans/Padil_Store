@@ -45,8 +45,14 @@ public class DetailTransaksiAdapter extends RecyclerView.Adapter<DetailTransaksi
     @Override
     public void onBindViewHolder(@NonNull DetailTransaksiAdapter.ViewHolder holder, int position) {
         holder.namaProduk.setText(list.get(position).getNamaProduk());
-        holder.hargaProduk.setText("Rp "+ list.get(position).getHargaProduk());
-        holder.totalHarga.setText(String.valueOf(formatRupiah.format((double)list.get(position).getTotalHarga())));
+        holder.hargaProduk.setText(list.get(position).getHargaProduk());
+        if (list.get(position).getVariasi() == null) {
+            holder.variasi.setVisibility(View.GONE);
+        } else {
+            holder.variasi.setText("Variant : "+ list.get(position).getVariasi());
+            holder.variasi.setVisibility(View.VISIBLE);
+        }
+        holder.totalHarga.setText((formatRupiah.format((double)list.get(position).getTotalHarga())));
         holder.totalKuantiti.setText("Qty "+list.get(position).getTotalKuantiti());
         Glide.with(context).load(list.get(position).getImg_url()).into(holder.productImage);
 
@@ -60,7 +66,6 @@ public class DetailTransaksiAdapter extends RecyclerView.Adapter<DetailTransaksi
         intentKP.putExtra("totalKP", TotalSemuaKP);
         LocalBroadcastManager.getInstance(context).sendBroadcast(intentKP);
 
-
     }
 
     @Override
@@ -70,7 +75,7 @@ public class DetailTransaksiAdapter extends RecyclerView.Adapter<DetailTransaksi
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView namaProduk, hargaProduk, totalHarga, totalKuantiti, subtotalDT, ongkirDT, totalDT;
+        TextView namaProduk, hargaProduk, totalHarga, totalKuantiti, variasi, subtotalDT, ongkirDT, totalDT;
         ImageView productImage;
 
         public ViewHolder(@NonNull View itemView) {
@@ -84,6 +89,7 @@ public class DetailTransaksiAdapter extends RecyclerView.Adapter<DetailTransaksi
             subtotalDT = itemView.findViewById(R.id.subtotalDT);
             ongkirDT = itemView.findViewById(R.id.ongkirDT);
             totalDT = itemView.findViewById(R.id.totalDT);
+            variasi = itemView.findViewById(R.id.variasiText);
         }
     }
 }

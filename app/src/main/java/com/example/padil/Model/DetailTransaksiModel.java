@@ -4,21 +4,30 @@ import java.io.Serializable;
 
 public class DetailTransaksiModel implements Serializable {
 
-    String namaProduk, hargaProduk, totalKuantiti, img_url;
+    String namaProduk, hargaProduk, totalKuantiti, img_url, variasi;
     int totalHarga, subtotal, ongkir, totalsemua;
 
     public DetailTransaksiModel() {
     }
 
-    public DetailTransaksiModel(String namaProduk, String hargaProduk, String totalKuantiti, String img_url, int subtotal, int ongkir, int totalsemua, int totalHarga) {
+    public DetailTransaksiModel(String namaProduk, String hargaProduk, String totalKuantiti, String variasi, String img_url, int subtotal, int ongkir, int totalsemua, int totalHarga) {
         this.namaProduk = namaProduk;
         this.hargaProduk = hargaProduk;
         this.totalKuantiti = totalKuantiti;
         this.img_url = img_url;
+        this.variasi = variasi;
         this.subtotal = subtotal;
         this.totalHarga = totalHarga;
         this.ongkir = ongkir;
         this.totalsemua = totalsemua;
+    }
+
+    public String getVariasi() {
+        return variasi;
+    }
+
+    public void setVariasi(String variasi) {
+        this.variasi = variasi;
     }
 
     public String getNamaProduk() {

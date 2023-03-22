@@ -52,7 +52,7 @@ public class DetailTransaksi extends AppCompatActivity {
     NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
 
     List<DetailTransaksiModel> detailTransaksiModelList;
-    DetailTransaksiModel detailTransaksiModel = null;
+
     DetailTransaksiAdapter detailTransaksiAdapter;
 
     private FirebaseFirestore firestore;

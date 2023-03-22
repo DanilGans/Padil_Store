@@ -30,7 +30,6 @@ public class KonfirmasiPembayaran extends AppCompatActivity {
     NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
     Button chatpenjual;
     TextView totalharga;
-
     FirebaseAuth auth;
     FirebaseFirestore firestore;
     String userID;

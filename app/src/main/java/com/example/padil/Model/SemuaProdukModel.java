@@ -4,20 +4,41 @@ import java.io.Serializable;
 
 public class SemuaProdukModel implements Serializable {
 
-    String id, deskripsi, img_url, nama, type, tagline;
+    String id, deskripsi,
+            img_url, img_url2, img_url3, img_url4, img_url5, img_url6, img_url7, img_url8,
+            nama, type, brpVariant, tagline, spinnerVariasi;
     int harga;
 
     public SemuaProdukModel() {
     }
 
-    public SemuaProdukModel(String id, String deskripsi, String img_url, String nama, String type, String tagline, int harga) {
+    public SemuaProdukModel(String id, String deskripsi,
+                            String img_url, String img_url2, String img_url3, String img_url4, String img_url5, String img_url6, String img_url7, String img_url8,
+                            String nama, String type, String brpVariant, String tagline,String spinnerVariasi, int harga) {
         this.deskripsi = deskripsi;
         this.id = id;
         this.img_url = img_url;
+        this.img_url2 = img_url2;
+        this.img_url3 = img_url3;
+        this.img_url4 = img_url4;
+        this.img_url5 = img_url5;
+        this.img_url6 = img_url6;
+        this.img_url7 = img_url7;
+        this.img_url8 = img_url8;
+        this.spinnerVariasi = spinnerVariasi;
         this.nama = nama;
         this.tagline = tagline;
         this.type = type;
+        this.brpVariant = brpVariant;
         this.harga = harga;
+    }
+
+    public String getSpinnerVariasi() {
+        return spinnerVariasi;
+    }
+
+    public void setSpinnerVariasi(String spinnerVariasi) {
+        this.spinnerVariasi = spinnerVariasi;
     }
 
     public String getId() {
@@ -42,6 +63,61 @@ public class SemuaProdukModel implements Serializable {
 
     public void setImg_url(String img_url) {
         this.img_url = img_url;
+    }
+
+    public String getImg_url2() {
+        return img_url2;
+    }
+
+    public void setImg_url2(String img_url2) {
+        this.img_url2 = img_url2;
+    }
+
+    public String getImg_url3() {
+        return img_url3;
+    }
+
+    public void setImg_url3(String img_url3) {
+        this.img_url3 = img_url3;
+    }
+
+    public String getImg_url4() {
+        return img_url4;
+    }
+    public void setImg_url4(String img_url4) {
+        this.img_url4 = img_url4;
+    }
+
+    public String getImg_url5() {
+        return img_url5;
+    }
+
+    public void setImg_url5(String img_url5) {
+        this.img_url5 = img_url5;
+    }
+
+    public String getImg_url6() {
+        return img_url6;
+    }
+
+    public void setImg_url6(String img_url6) {
+        this.img_url6 = img_url6;
+    }
+
+    public String getImg_url7() {
+        return img_url7;
+    }
+
+    public void setImg_url7(String img_url7) {
+        this.img_url7 = img_url7;
+    }
+
+    public String getImg_url8() {
+        return img_url8;
+    }
+
+    public void setImg_url8(String img_url8) {
+        this.img_url8 = img_url8;
     }
 
     public String getNama() {
@@ -74,5 +150,13 @@ public class SemuaProdukModel implements Serializable {
 
     public void setTagline(String tagline) {
         this.tagline = tagline;
+    }
+
+    public String getBrpVariant() {
+        return brpVariant;
+    }
+
+    public void setBrpVariant(String brpVariant) {
+        this.brpVariant = brpVariant;
     }
 }

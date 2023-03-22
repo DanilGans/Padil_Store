@@ -46,8 +46,23 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangAdapter.View
     @Override
     public void onBindViewHolder(@NonNull KeranjangAdapter.ViewHolder holder, int position) {
         holder.namaProduk.setText(list.get(position).getNamaProduk());
-        holder.hargaProduk.setText("Rp "+ list.get(position).getHargaProduk());
-        holder.totalHarga.setText(String.valueOf(formatRupiah.format((double)list.get(position).getTotalHarga())));
+        holder.hargaProduk.setText(list.get(position).getHargaProduk());
+
+        if (list.get(position).getVariasi() == null) {
+            holder.variasi.setVisibility(View.GONE);
+        } else {
+            holder.variasi.setText("Variant : "+ list.get(position).getVariasi());
+            holder.variasi.setVisibility(View.VISIBLE);
+        }
+        if (list.get(position).getCicilan() == null){
+            holder.cicilan.setVisibility(View.GONE);
+        } else {
+            holder.cicilan.setText("Cicilan : "+ list.get(position).getCicilan());
+            holder.cicilan.setVisibility(View.VISIBLE);
+            holder.variasi.setVisibility(View.GONE);
+        }
+
+        holder.totalHarga.setText((formatRupiah.format((double)list.get(position).getTotalHarga())));
         holder.totalKuantiti.setText("Qty "+list.get(position).getTotalKuantiti());
 
         Glide.with(context).load(list.get(position).getImg_url()).into(holder.productImage);
@@ -67,7 +82,7 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangAdapter.View
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView namaProduk, hargaProduk, totalHarga, totalKuantiti;
+        TextView namaProduk, hargaProduk, totalHarga, totalKuantiti, variasi, cicilan;
         ImageView productImage;
 
         public ViewHolder(@NonNull View itemView) {
@@ -78,6 +93,8 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangAdapter.View
             totalHarga = itemView.findViewById(R.id.total_price);
             totalKuantiti = itemView.findViewById(R.id.total_quantity);
             productImage = itemView.findViewById(R.id.product_image);
+            variasi = itemView.findViewById(R.id.variasiText);
+            cicilan = itemView.findViewById(R.id.cicilanText);
 
         }
     }
