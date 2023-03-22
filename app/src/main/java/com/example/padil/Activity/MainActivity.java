@@ -81,6 +81,11 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent2 = new Intent(MainActivity.this, Profile.class);
                         startActivity(intent2);
                         break;
+
+                    case R.id.infoNav:
+                        Intent intent3 = new Intent(MainActivity.this, AboutUs.class);
+                        startActivity(intent3);
+                        break;
                 }
 
                 return false;

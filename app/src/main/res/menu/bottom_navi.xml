@@ -13,4 +13,8 @@
         android:title="User"
         android:icon="@drawable/baseline_manage_accounts_24"
         android:id="@+id/userNav"/>
+    <item
+        android:title="About Us"
+        android:icon="@drawable/baseline_info_24"
+        android:id="@+id/infoNav"/>
 </menu>

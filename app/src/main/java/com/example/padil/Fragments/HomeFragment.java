@@ -19,11 +19,14 @@ import android.widget.TextView;
 import com.example.padil.Activity.SemuaProduk;
 import com.example.padil.Adapter.KategoriAdapter;
 import com.example.padil.Adapter.ProdukPopulerAdapter;
+import com.example.padil.Adapter.SemuaProdukAdapter;
 import com.example.padil.Model.KategoriModel;
 import com.example.padil.Model.ProdukPopulerModel;
+import com.example.padil.Model.SemuaProdukModel;
 import com.example.padil.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -40,8 +43,8 @@ public class HomeFragment extends Fragment {
     TextView lihat_spBtn;
 
     //Populer Produk
-    ProdukPopulerAdapter produkPopulerAdapter;
-    List<ProdukPopulerModel> produkPopulerModelList;
+    SemuaProdukAdapter semuaProdukAdapter;
+    List<SemuaProdukModel> semuaProdukModelList;
 
     //Firestore Connection
     FirebaseFirestore db;
@@ -98,28 +101,47 @@ public class HomeFragment extends Fragment {
 
         //Populer Produk
         populerProdukRV.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL, false));
-        produkPopulerModelList = new ArrayList<>();
-        produkPopulerAdapter = new ProdukPopulerAdapter(getContext(), produkPopulerModelList);
-        populerProdukRV.setAdapter(produkPopulerAdapter);
+        semuaProdukModelList = new ArrayList<>();
+        semuaProdukAdapter = new SemuaProdukAdapter(getContext(), semuaProdukModelList);
+        populerProdukRV.setAdapter(semuaProdukAdapter);
 
-        //Read Data from Firestore DB
-        db.collection("Produk_Populer")
+        db.collection("Produk").whereEqualTo("type", "ornament")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
                         if (task.isSuccessful()){
-                            for (QueryDocumentSnapshot document : task.getResult()){
-                                ProdukPopulerModel produkPopulerModel = document.toObject(ProdukPopulerModel.class);
-                                produkPopulerModelList.add(produkPopulerModel);
-                                produkPopulerAdapter.notifyDataSetChanged();
+                            for (DocumentSnapshot doc : task.getResult().getDocuments()){
+
+                                SemuaProdukModel semuaProdukModel = doc.toObject(SemuaProdukModel.class);
+                                semuaProdukModelList.add(semuaProdukModel);
+                                semuaProdukAdapter.notifyDataSetChanged();
                             }
-                        }else {
-                            Log.w(TAG, "Error getting documents.", task.getException());
                         }
+
                     }
                 });
 
+        db.collection("Produk").whereEqualTo("type", "papan_pvc")
+                .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                            if (task.isSuccessful()){
+                                for (DocumentSnapshot doc : task.getResult().getDocuments()){
+
+                                    SemuaProdukModel semuaProdukModel = doc.toObject(SemuaProdukModel.class);
+                                    semuaProdukModelList.add(semuaProdukModel);
+                                    semuaProdukAdapter.notifyDataSetChanged();
+                                }
+                            }
+
+                        }
+                    });
+
         return root;
+
     }
 }

@@ -26,6 +26,7 @@ public class SemuaProduk extends AppCompatActivity {
     RecyclerView recyclerView;
     SemuaProdukAdapter semuaProdukAdapter;
     List<SemuaProdukModel> semuaProdukModelList;
+
     ImageView BackBtnSP;
     FirebaseFirestore firestore;
 
@@ -114,6 +115,66 @@ public class SemuaProduk extends AppCompatActivity {
 
         if (type != null && type.equalsIgnoreCase("material")){
             firestore.collection("Produk").whereEqualTo("type", "material")
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                            if (task.isSuccessful()){
+                                for (DocumentSnapshot doc : task.getResult().getDocuments()){
+
+                                    SemuaProdukModel semuaProdukModel = doc.toObject(SemuaProdukModel.class);
+                                    semuaProdukModelList.add(semuaProdukModel);
+                                    semuaProdukAdapter.notifyDataSetChanged();
+                                }
+                            }
+
+                        }
+                    });
+        }
+
+        if (type != null && type.equalsIgnoreCase("ornament")){
+            firestore.collection("Produk").whereEqualTo("type", "ornament")
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                            if (task.isSuccessful()){
+                                for (DocumentSnapshot doc : task.getResult().getDocuments()){
+
+                                    SemuaProdukModel semuaProdukModel = doc.toObject(SemuaProdukModel.class);
+                                    semuaProdukModelList.add(semuaProdukModel);
+                                    semuaProdukAdapter.notifyDataSetChanged();
+                                }
+                            }
+
+                        }
+                    });
+        }
+
+        if (type != null && type.equalsIgnoreCase("wallpaper")){
+            firestore.collection("Produk").whereEqualTo("type", "wallpaper")
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                            if (task.isSuccessful()){
+                                for (DocumentSnapshot doc : task.getResult().getDocuments()){
+
+                                    SemuaProdukModel semuaProdukModel = doc.toObject(SemuaProdukModel.class);
+                                    semuaProdukModelList.add(semuaProdukModel);
+                                    semuaProdukAdapter.notifyDataSetChanged();
+                                }
+                            }
+
+                        }
+                    });
+        }
+
+        if (type != null && type.equalsIgnoreCase("pemasangan")){
+            firestore.collection("Produk").whereEqualTo("type", "pemasangan")
                     .get()
                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override

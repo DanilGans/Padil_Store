@@ -29,8 +29,7 @@ public class KonfirmasiPembayaran extends AppCompatActivity {
     Locale localeID = new Locale("in", "ID");
     NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
     Button chatpenjual;
-    TextView totalharga;
-
+    TextView totalharga, nomorpesanan;
     FirebaseAuth auth;
     FirebaseFirestore firestore;
     String userID;
@@ -42,6 +41,7 @@ public class KonfirmasiPembayaran extends AppCompatActivity {
 
         chatpenjual = findViewById(R.id.buttonKP);
         totalharga = findViewById(R.id.totalKP);
+        nomorpesanan = findViewById(R.id.nomorpesanan);
         auth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
         userID = auth.getCurrentUser().getUid();
@@ -56,6 +56,9 @@ public class KonfirmasiPembayaran extends AppCompatActivity {
                     for (QueryDocumentSnapshot doc : task.getResult()){
                         String totalHargaUser = doc.getString("TotalHarga");
                         totalharga.setText(totalHargaUser);
+
+                        String NomorPesanan = doc.getString("ID");
+                        nomorpesanan.setText("Nomor Pesanan : "+NomorPesanan);
                     }
                 }
             }

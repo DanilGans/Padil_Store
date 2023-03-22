@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -55,6 +56,14 @@ public class AlamatAdapter extends RecyclerView.Adapter<AlamatAdapter.ViewHolder
                 selectedRadioBtn = (RadioButton) v;
                 selectedRadioBtn.setChecked(true);
                 selectedAddress.setAlamat(alamatModelList.get(position).getUserAlamat());
+            }
+        });
+
+        holder.alamat.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Toast.makeText(context, "Tes", Toast.LENGTH_SHORT).show();
+                return false;
             }
         });
     }

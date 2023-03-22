@@ -123,6 +123,11 @@ public class Profile extends AppCompatActivity {
                     case R.id.userNav:
 
                         break;
+
+                    case R.id.infoNav:
+                        Intent intent3 = new Intent(Profile.this, AboutUs.class);
+                        startActivity(intent3);
+                        break;
                 }
 
                 return false;

@@ -79,21 +79,7 @@ public class AlamatPengiriman extends AppCompatActivity implements AlamatAdapter
         payment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                double amount = 0.0;
-                if (obj instanceof ProdukPopulerModel){
-                    ProdukPopulerModel produkPopulerModel = (ProdukPopulerModel) obj;
-                    amount = produkPopulerModel.getHarga();
-                }
-                if (obj instanceof SemuaProdukModel){
-                    SemuaProdukModel semuaProdukModel = (SemuaProdukModel) obj;
-                    amount = semuaProdukModel.getHarga();
-                }
-
-                Intent intent = new Intent(AlamatPengiriman.this, Pembayaran.class);
-                intent.putExtra("amount", amount);
-                startActivity(intent);
-
+                onBackPressed();
             }
         });
 

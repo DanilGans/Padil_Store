@@ -39,7 +39,7 @@ public class Pembayaran extends AppCompatActivity {
 
         total.setText(formatRupiah.format((double) + amount + 10000));
 
-
-
     }
 }
+
+//sddss

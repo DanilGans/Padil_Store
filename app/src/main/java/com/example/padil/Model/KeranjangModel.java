@@ -4,18 +4,45 @@ import java.io.Serializable;
 
 public class KeranjangModel implements Serializable {
 
-    String namaProduk, hargaProduk, totalKuantiti, img_url;
+    String documentId, namaProduk, hargaProduk, totalKuantiti, img_url, variasi, cicilan;
     int totalHarga;
 
     public KeranjangModel() {
     }
 
-    public KeranjangModel(String namaProduk, String hargaProduk, String totalKuantiti, String img_url, int totalHarga) {
+    public KeranjangModel(String documentId, String namaProduk, String hargaProduk, String totalKuantiti, String cicilan, String img_url, String variasi, int totalHarga) {
+        this.documentId = documentId;
         this.namaProduk = namaProduk;
         this.hargaProduk = hargaProduk;
         this.totalKuantiti = totalKuantiti;
+        this.variasi = variasi;
+        this.cicilan = cicilan;
         this.img_url = img_url;
         this.totalHarga = totalHarga;
+    }
+
+    public String getDocumentId() {
+        return documentId;
+    }
+
+    public void setDocumentId(String documentId) {
+        this.documentId = documentId;
+    }
+
+    public String getCicilan() {
+        return cicilan;
+    }
+
+    public void setCicilan(String cicilan) {
+        this.cicilan = cicilan;
+    }
+
+    public String getVariasi() {
+        return variasi;
+    }
+
+    public void setVariasi(String variasi) {
+        this.variasi = variasi;
     }
 
     public String getNamaProduk() {

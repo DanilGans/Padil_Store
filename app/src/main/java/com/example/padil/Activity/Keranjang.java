@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -87,9 +88,13 @@ public class Keranjang extends AppCompatActivity {
                         if (task.isSuccessful()){
                             for (DocumentSnapshot doc : task.getResult().getDocuments()){
 
+                                String documentId = doc.getId();
+
                                 KeranjangModel keranjangModel = doc.toObject(KeranjangModel.class);
+                                keranjangModel.setDocumentId(documentId);
                                 keranjangModelList.add(keranjangModel);
                                 keranjangAdapter.notifyDataSetChanged();
+
                             }
                         }
                     }
@@ -118,6 +123,11 @@ public class Keranjang extends AppCompatActivity {
                     case R.id.userNav:
                         Intent intent2 = new Intent(Keranjang.this, Profile.class);
                         startActivity(intent2);
+                        break;
+
+                    case R.id.infoNav:
+                        Intent intent3 = new Intent(Keranjang.this, AboutUs.class);
+                        startActivity(intent3);
                         break;
                 }
 

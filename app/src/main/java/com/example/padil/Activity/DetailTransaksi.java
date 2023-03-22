@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +45,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.UUID;
 
 public class DetailTransaksi extends AppCompatActivity {
 
@@ -52,7 +54,7 @@ public class DetailTransaksi extends AppCompatActivity {
     NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
 
     List<DetailTransaksiModel> detailTransaksiModelList;
-    DetailTransaksiModel detailTransaksiModel = null;
+
     DetailTransaksiAdapter detailTransaksiAdapter;
 
     private FirebaseFirestore firestore;
@@ -60,7 +62,8 @@ public class DetailTransaksi extends AppCompatActivity {
 
 
     TextView alamat, subtotal, ongkir, total;
-    Button bayar;
+    Button bayar, addAlamat;
+    ImageView backBtn;
 
     String userId;
     RecyclerView recyclerView;
@@ -79,6 +82,22 @@ public class DetailTransaksi extends AppCompatActivity {
         ongkir = findViewById(R.id.ongkirDT);
         total = findViewById(R.id.totalDT);
         bayar = findViewById(R.id.bayarbtnDT);
+        backBtn = findViewById(R.id.backBtnDT);
+        addAlamat = findViewById(R.id.addAlamat);
+
+        addAlamat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DetailTransaksi.this, AlamatPengiriman.class));
+            }
+        });
+
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         bayar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,6 +105,7 @@ public class DetailTransaksi extends AppCompatActivity {
 
                 final HashMap<String, Object> bayarMap = new HashMap<>();
 
+                bayarMap.put("ID", UUID.randomUUID().toString().substring(0,5));
                 bayarMap.put("TotalHarga", total.getText());
                 bayarMap.put("Alamat", alamat.getText().toString());
 

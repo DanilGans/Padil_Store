@@ -43,12 +43,89 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/backBtnDP">
 
-        <ImageView
-            android:id="@+id/img_produk"
+        <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"></ImageView>
+            android:layout_height="300dp"
+            android:overScrollMode="never"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/img_produk"
+                    android:layout_width="350dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"></ImageView>
+
+                <ImageView
+                    android:id="@+id/img_produk2"
+                    android:layout_width="350dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="@drawable/noimage"></ImageView>
+
+                <ImageView
+                    android:id="@+id/img_produk3"
+                    android:layout_width="350dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="@drawable/noimage"></ImageView>
+
+                <ImageView
+                    android:id="@+id/img_produk4"
+                    android:layout_width="350dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="@drawable/noimage"></ImageView>
+
+                <ImageView
+                    android:id="@+id/img_produk5"
+                    android:layout_width="350dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="@drawable/noimage"></ImageView>
+
+                <ImageView
+                    android:id="@+id/img_produk6"
+                    android:layout_width="350dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="@drawable/noimage"></ImageView>
+
+                <ImageView
+                    android:id="@+id/img_produk7"
+                    android:layout_width="350dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="@drawable/noimage"></ImageView>
+
+                <ImageView
+                    android:id="@+id/img_produk8"
+                    android:layout_width="350dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="@drawable/noimage"></ImageView>
+
+                <ImageView
+                    android:id="@+id/img_produk9"
+                    android:layout_width="350dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="@drawable/noimage"></ImageView>
+
+                <ImageView
+                    android:id="@+id/img_produk10"
+                    android:layout_width="350dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="@drawable/noimage"></ImageView>
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
 
     </androidx.cardview.widget.CardView>
 
@@ -69,22 +146,22 @@
         android:id="@+id/harga_produk"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
         android:layout_marginEnd="20dp"
         android:fontFamily="@font/poppins_medium"
         android:text="44.000"
         android:textColor="@color/oren"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+        app:layout_constraintTop_toBottomOf="@+id/nama_produk" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="24dp"
         android:elevation="5dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nama_produk">
 
@@ -115,57 +192,81 @@
     </androidx.cardview.widget.CardView>
 
     <ImageView
-        android:id="@+id/additem"
+        android:id="@+id/addcartbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginBottom="126dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="65dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/add" />
-
-    <TextView
-        android:id="@+id/kuantiti"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="124dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="1"
-        android:textColor="@color/oren"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/additem" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/cart" />
 
     <ImageView
         android:id="@+id/removeitem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="126dp"
+        android:layout_marginStart="118dp"
+        android:layout_marginBottom="77dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/kuantiti"
+        app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/remove" />
 
-    <ImageView
-        android:id="@+id/addcartbtn"
+    <TextView
+        android:id="@+id/kuantiti"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="120dp"
+        android:layout_marginStart="83dp"
+        android:layout_marginBottom="78dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="1"
+        android:textColor="@color/oren"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/belibtn"
-        app:srcCompat="@drawable/addtocart" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/belibtn"
+        android:id="@+id/additem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="120dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="77dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/add" />
+
+    <TextView
+        android:id="@+id/pilihvariant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Pilih Variant"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="20dp"
+        tools:layout_editor_absoluteY="537dp" />
+
+    <Spinner
+        android:id="@+id/spinnerVariant"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/buynow" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="588dp" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/variant"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="20dp"
+        android:orientation="vertical"
+        app:constraint_referenced_ids="pilihvariant, spinnerVariant"
+        app:flow_wrapMode="aligned"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

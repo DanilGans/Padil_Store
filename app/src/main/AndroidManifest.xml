@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Padil">
         <activity
+            android:name=".Activity.AboutUs"
+            android:exported="false" />
+        <activity
             android:name=".Activity.Profile"
             android:exported="false" />
         <activity
