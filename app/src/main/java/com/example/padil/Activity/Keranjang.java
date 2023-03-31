@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.padil.Adapter.KeranjangAdapter;
@@ -66,7 +67,22 @@ public class Keranjang extends AppCompatActivity {
         bayarsekarang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Keranjang.this, DetailTransaksi.class));
+                firestore.collection("Keranjang").document(auth.getCurrentUser().getUid())
+                        .collection("User")
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()){
+                                    QuerySnapshot querySnapshot = task.getResult();
+                                    if (querySnapshot.isEmpty()){
+                                        Toast.makeText(Keranjang.this, "Anda belum mempunyai produk di keranjang!", Toast.LENGTH_SHORT).show();
+                                    }else {
+                                        startActivity(new Intent(Keranjang.this, DetailTransaksi.class));
+                                    }
+                                }
+                            }
+                        });
             }
         });
 

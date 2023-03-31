@@ -205,8 +205,8 @@
         android:id="@+id/removeitem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="118dp"
-        android:layout_marginBottom="77dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginBottom="76dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/remove" />
@@ -215,8 +215,8 @@
         android:id="@+id/kuantiti"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="83dp"
-        android:layout_marginBottom="78dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginBottom="76dp"
         android:fontFamily="@font/poppins_semibold"
         android:text="1"
         android:textColor="@color/oren"
@@ -228,8 +228,8 @@
         android:id="@+id/additem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginBottom="77dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="76dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/add" />
@@ -267,6 +267,17 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView2" />
+
+    <ImageButton
+        android:id="@+id/chatBtn"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="64dp"
+        android:background="@drawable/baseline_chat_24"
+        android:backgroundTint="@color/main"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/addcartbtn" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

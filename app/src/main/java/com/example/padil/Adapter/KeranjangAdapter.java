@@ -38,7 +38,6 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangAdapter.View
 
     Context context;
     List<KeranjangModel> list;
-
     int totalHargaSemua = 0;
 
     public KeranjangAdapter(Context context, List<KeranjangModel> list) {

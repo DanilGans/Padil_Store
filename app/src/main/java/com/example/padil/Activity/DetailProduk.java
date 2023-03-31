@@ -7,10 +7,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.helper.widget.Flow;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -48,25 +50,20 @@ public class DetailProduk extends AppCompatActivity {
             imgProduk6, imgProduk7, imgProduk8, imgProduk9, imgProduk10;
     TextView namaProduk, hargaProduk, deskripsiProduk, Kuantiti, pilihVariant;
     ImageView addItem, removeItem, addtoCart, buyNow, backBtnDP;
+    ImageButton chatBtn;
     Spinner spinnerVariant;
     String type = "";
     Flow variantLayout;
-
-
     int totalKuantiti = 1;
     int totalHarga = 0;
 
     //Produk Populer
     ProdukPopulerModel produkPopulerModel = null;
-
     //Semua Produk
     SemuaProdukModel semuaProdukModel = null;
-
-
     FirebaseAuth auth;
 
     private FirebaseFirestore firestore;
-
     private ArrayList<String> arrayVariasi;
     private ArrayAdapter<String> adapterVariasi;
 
@@ -108,10 +105,22 @@ public class DetailProduk extends AppCompatActivity {
 
         addtoCart = findViewById(R.id.addcartbtn);
         backBtnDP = findViewById(R.id.backBtnDP);
+        chatBtn = findViewById(R.id.chatBtn);
 
         pilihVariant = findViewById(R.id.pilihvariant);
         spinnerVariant = findViewById(R.id.spinnerVariant);
         variantLayout = findViewById(R.id.variant);
+
+        chatBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "https://wa.me/6282360130466/";
+
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                startActivity(intent);
+            }
+        });
 
         backBtnDP.setOnClickListener(new View.OnClickListener() {
             @Override

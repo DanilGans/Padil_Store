@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.padil.Fragments.HomeFragment;
 import com.example.padil.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -54,7 +55,11 @@ public class MainActivity extends AppCompatActivity {
         docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                String ava_url = value.getString("avatar");
                 NamaUser.setText("Hi, " + value.getString("Nama Lengkap"));
+                Glide.with(MainActivity.this)
+                        .load(ava_url)
+                        .into(avatar);
             }
         });
 

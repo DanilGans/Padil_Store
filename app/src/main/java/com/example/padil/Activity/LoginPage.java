@@ -62,7 +62,7 @@ public class LoginPage extends AppCompatActivity {
                             Toast.makeText(LoginPage.this, "Login Berhasil!", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(LoginPage.this, MainActivity.class));
                         }else{
-                            Toast.makeText(LoginPage.this, "Gagal: "+task.getException(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginPage.this, "Gagal: Cek ulang password kamu", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

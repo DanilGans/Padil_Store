@@ -71,7 +71,7 @@ public class KonfirmasiPembayaran extends AppCompatActivity {
         chatpenjual.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String url = "https://wa.me/6285370279318/";
+                String url = "https://wa.me/6282360130466/";
 
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse(url));
