@@ -25,6 +25,7 @@ import com.example.padil.Adapter.DetailTransaksiAdapter;
 import com.example.padil.Adapter.KeranjangAdapter;
 import com.example.padil.Model.DetailTransaksiModel;
 import com.example.padil.Model.KeranjangModel;
+import com.example.padil.Model.SemuaProdukModel;
 import com.example.padil.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -41,10 +42,13 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.UUID;
 
 public class DetailTransaksi extends AppCompatActivity {
@@ -52,15 +56,12 @@ public class DetailTransaksi extends AppCompatActivity {
     //Get mata uang rupiah
     Locale localeID = new Locale("in", "ID");
     NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
-
     List<DetailTransaksiModel> detailTransaksiModelList;
-
     DetailTransaksiAdapter detailTransaksiAdapter;
-
     private FirebaseFirestore firestore;
     private FirebaseAuth auth;
 
-
+    KeranjangModel keranjangModel;
     TextView alamat, subtotal, ongkir, total;
     Button bayar, addAlamat;
     ImageView backBtn;
@@ -85,6 +86,15 @@ public class DetailTransaksi extends AppCompatActivity {
         backBtn = findViewById(R.id.backBtnDT);
         addAlamat = findViewById(R.id.addAlamat);
 
+        recyclerView = findViewById(R.id.rv_detTransaksi);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        detailTransaksiModelList = new ArrayList<>();
+        detailTransaksiAdapter = new DetailTransaksiAdapter(this, detailTransaksiModelList);
+        recyclerView.setAdapter(detailTransaksiAdapter);
+
+        getDataKeranjang();
+        getDataAlamat();
+
         addAlamat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,24 +113,60 @@ public class DetailTransaksi extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                final HashMap<String, Object> bayarMap = new HashMap<>();
-
-                bayarMap.put("ID", UUID.randomUUID().toString().substring(0,5));
-                bayarMap.put("TotalHarga", total.getText());
-                bayarMap.put("Alamat", alamat.getText().toString());
-
-                firestore.collection("Pesanan Masuk").document(userId)
-                        .collection("User").add(bayarMap).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                firestore.collection("Keranjang")
+                        .document(userId)
+                        .collection("User")
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                                Toast.makeText(DetailTransaksi.this, "Berhasil melakukan pesanan", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(DetailTransaksi.this, KonfirmasiPembayaran.class));
-                                finish();
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.w(TAG, "Gagal melakukan pesanan tersebut ", e);
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()){
+                                    ArrayList<String> namaProdukList = new ArrayList<String>();
+                                    for (QueryDocumentSnapshot doc : task.getResult()){
+
+                                        String namaProduk = doc.getString("namaProduk");
+                                        String kuantiti = doc.getString("totalKuantiti");
+                                        String variasi = doc.getString("variasi");
+                                        String cicilan = doc.getString("cicilan");
+
+                                        // Check if the 'variasi' & 'cicilan' field is not null
+                                        if (variasi != null) {
+                                            namaProduk = namaProduk + " || " + variasi;
+                                        } else if (cicilan != null){
+                                            namaProduk = namaProduk + " || Cicilan : " + cicilan;
+                                        }
+                                        namaProduk = namaProduk + " || Qty: " + kuantiti;
+
+                                        namaProdukList.add(namaProduk);
+                                    }
+
+                                    final HashMap<String, Object> bayarMap = new HashMap<>();
+
+                                    Calendar calendar = Calendar.getInstance();
+                                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                                    String currentDate = dateFormat.format(calendar.getTime());
+
+                                    bayarMap.put("order_id", UUID.randomUUID().toString().substring(0,5));
+                                    bayarMap.put("list_produk", namaProdukList);
+                                    bayarMap.put("totalharga", total.getText());
+                                    bayarMap.put("alamat", alamat.getText().toString());
+                                    bayarMap.put("tanggal", currentDate);
+
+                                    firestore.collection("Pesanan Masuk").document(userId)
+                                            .set(bayarMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void aVoid) {
+                                                    Toast.makeText(DetailTransaksi.this, "Berhasil melakukan pesanan", Toast.LENGTH_SHORT).show();
+                                                    startActivity(new Intent(DetailTransaksi.this, KonfirmasiPembayaran.class));
+                                                    finish();
+                                                }
+                                            }).addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Log.w(TAG, "Gagal melakukan pesanan tersebut ", e);
+                                                }
+                                            });
+                                }
                             }
                         });
             }
@@ -129,33 +175,12 @@ public class DetailTransaksi extends AppCompatActivity {
         LocalBroadcastManager.getInstance(this)
                 .registerReceiver(mMessageReceiver, new IntentFilter("MySubTotal"));
 
-        recyclerView = findViewById(R.id.rv_detTransaksi);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        detailTransaksiModelList = new ArrayList<>();
-        detailTransaksiAdapter = new DetailTransaksiAdapter(this, detailTransaksiModelList);
-        recyclerView.setAdapter(detailTransaksiAdapter);
+    }
 
-        //GET DATA "KERANJANG"
-        firestore.collection("Keranjang").document(auth.getCurrentUser().getUid())
-                .collection("User").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()){
-                            for (DocumentSnapshot doc : task.getResult().getDocuments()){
-
-                                DetailTransaksiModel detailTransaksiModel = doc.toObject(DetailTransaksiModel.class);
-                                detailTransaksiModelList.add(detailTransaksiModel);
-                                detailTransaksiAdapter.notifyDataSetChanged();
-                            }
-                        }
-                    }
-                });
-
-
+    private void getDataAlamat() {
         //GET DATA "ALAMAT" FROM FIRESTORE SUBCOLLECTION
         DocumentReference documentReference = firestore.collection("CurrentUser").document(userId);
         CollectionReference subCollectionRef = documentReference.collection("Alamat");
-
         subCollectionRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -169,7 +194,24 @@ public class DetailTransaksi extends AppCompatActivity {
                 }
             }
         });
+    }
 
+    private void getDataKeranjang() {
+        //GET DATA "KERANJANG"
+        firestore.collection("Keranjang").document(userId)
+                .collection("User").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()){
+                            for (DocumentSnapshot doc : task.getResult().getDocuments()){
+
+                                DetailTransaksiModel detailTransaksiModel = doc.toObject(DetailTransaksiModel.class);
+                                detailTransaksiModelList.add(detailTransaksiModel);
+                                detailTransaksiAdapter.notifyDataSetChanged();
+                            }
+                        }
+                    }
+                });
     }
 
     public BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {

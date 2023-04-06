@@ -79,7 +79,8 @@ public class AlamatPengiriman extends AppCompatActivity implements AlamatAdapter
         payment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                startActivity(new Intent(AlamatPengiriman.this, DetailTransaksi.class));
+                finish();
             }
         });
 
@@ -94,7 +95,6 @@ public class AlamatPengiriman extends AppCompatActivity implements AlamatAdapter
 
     @Override
     public void setAlamat(String alamat) {
-
         mAlamat = alamat;
     }
 

@@ -13,6 +13,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Padil">
         <activity
+            android:name=".Activity.AP_Produk"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.AP_Pesanan"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.AdminPanel"
+            android:exported="false" />
+        <activity
             android:name=".Activity.EditProfile"
             android:exported="false" />
         <activity
@@ -59,6 +68,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -67,8 +77,7 @@
             android:exported="true" />
         <activity
             android:name=".Activity.MainActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
 
         <meta-data
             android:name="preloaded_fonts"

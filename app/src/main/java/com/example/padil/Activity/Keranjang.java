@@ -63,34 +63,6 @@ public class Keranjang extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
 
-        bayarsekarang = findViewById(R.id.bayarsekarangBtn);
-        bayarsekarang.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                firestore.collection("Keranjang").document(auth.getCurrentUser().getUid())
-                        .collection("User")
-                        .get()
-                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                if (task.isSuccessful()){
-                                    QuerySnapshot querySnapshot = task.getResult();
-                                    if (querySnapshot.isEmpty()){
-                                        Toast.makeText(Keranjang.this, "Anda belum mempunyai produk di keranjang!", Toast.LENGTH_SHORT).show();
-                                    }else {
-                                        startActivity(new Intent(Keranjang.this, DetailTransaksi.class));
-                                    }
-                                }
-                            }
-                        });
-            }
-        });
-
-        totalHargaCart = findViewById(R.id.totalharga_cart);
-
-        LocalBroadcastManager.getInstance(this)
-                .registerReceiver(mMessageReceiver, new IntentFilter("MyTotalHarga"));
-
         recyclerView = findViewById(R.id.keranjang_rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         keranjangModelList = new ArrayList<>();
@@ -115,6 +87,36 @@ public class Keranjang extends AppCompatActivity {
                         }
                     }
                 });
+
+
+        bayarsekarang = findViewById(R.id.bayarsekarangBtn);
+        bayarsekarang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                firestore.collection("Keranjang").document(auth.getCurrentUser().getUid())
+                        .collection("User")
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()){
+                                    QuerySnapshot querySnapshot = task.getResult();
+                                    if (querySnapshot.isEmpty()){
+                                        Toast.makeText(Keranjang.this, "Anda belum mempunyai produk di keranjang!", Toast.LENGTH_SHORT).show();
+                                    }else {
+                                        Intent intent = new Intent(Keranjang.this, DetailTransaksi.class);
+                                        startActivity(intent);
+                                    }
+                                }
+                            }
+                        });
+            }
+        });
+
+        totalHargaCart = findViewById(R.id.totalharga_cart);
+
+        LocalBroadcastManager.getInstance(this)
+                .registerReceiver(mMessageReceiver, new IntentFilter("MyTotalHarga"));
 
         nav = findViewById(R.id.bottomNavigationView);
 
@@ -158,6 +160,7 @@ public class Keranjang extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             int totalBill = intent.getIntExtra("totalHargaSemua", 0);
             totalHargaCart.setText(formatRupiah.format((double) + totalBill));
+            return;
         }
     };
 }

@@ -2,7 +2,7 @@ package com.example.padil.Model;
 
 import java.io.Serializable;
 
-public class KeranjangModel implements Serializable {
+public class KeranjangModel implements Serializable{
 
     String documentId, namaProduk, hargaProduk, totalKuantiti, img_url, variasi, cicilan;
     int totalHarga;

@@ -102,6 +102,7 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangAdapter.View
         intent.putExtra("totalHargaSemua", totalHargaSemua);
 
         LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+
     }
 
     @Override

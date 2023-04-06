@@ -1,6 +1,7 @@
 package com.example.padil.Activity;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -17,7 +18,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -46,23 +49,17 @@ public class KonfirmasiPembayaran extends AppCompatActivity {
         firestore = FirebaseFirestore.getInstance();
         userID = auth.getCurrentUser().getUid();
 
-        DocumentReference docRef = firestore.collection("Pesanan Masuk").document(userID);
-        CollectionReference subRef = docRef.collection("User");
-
-        subRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()){
-                    for (QueryDocumentSnapshot doc : task.getResult()){
-                        String totalHargaUser = doc.getString("TotalHarga");
+        firestore.collection("Pesanan Masuk").document(userID)
+                .addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                        String totalHargaUser = value.getString("totalharga");
                         totalharga.setText(totalHargaUser);
 
-                        String NomorPesanan = doc.getString("ID");
+                        String NomorPesanan = value.getString("order_id");
                         nomorpesanan.setText("Nomor Pesanan : "+NomorPesanan);
                     }
-                }
-            }
-        });
+                });
 
         //double total = 0.0;
         //total = getIntent().getIntExtra("totalKP", 176000);

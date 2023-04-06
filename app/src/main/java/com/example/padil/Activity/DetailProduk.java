@@ -3,12 +3,14 @@ package com.example.padil.Activity;
 import static android.content.ContentValues.TAG;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.helper.widget.Flow;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.transition.Slide;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -32,13 +34,16 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
 public class DetailProduk extends AppCompatActivity {
@@ -56,6 +61,8 @@ public class DetailProduk extends AppCompatActivity {
     Flow variantLayout;
     int totalKuantiti = 1;
     int totalHarga = 0;
+
+    ImageSlider imageSlider;
 
     //Produk Populer
     ProdukPopulerModel produkPopulerModel = null;
@@ -94,6 +101,8 @@ public class DetailProduk extends AppCompatActivity {
         imgProduk8 = findViewById(R.id.img_produk8);
         imgProduk9 = findViewById(R.id.img_produk9);
         imgProduk10 = findViewById(R.id.img_produk10);
+
+//        imageSlider = findViewById(R.id.image_slider);
 
         namaProduk = findViewById(R.id.nama_produk);
         hargaProduk = findViewById(R.id.harga_produk);
@@ -248,6 +257,8 @@ public class DetailProduk extends AppCompatActivity {
                                     Log.w(TAG, "Gagal menambahkan produk tersebut ", e);
                                 }
                             });
+
+
                 }
 
             }
