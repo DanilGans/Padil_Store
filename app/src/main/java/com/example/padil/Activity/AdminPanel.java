@@ -44,5 +44,19 @@ public class AdminPanel extends AppCompatActivity {
             }
         });
 
+        produk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AdminPanel.this, AP_Produk.class));
+            }
+        });
+
+        akun.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AdminPanel.this, Profile.class));
+            }
+        });
+
     }
 }

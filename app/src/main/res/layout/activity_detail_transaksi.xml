@@ -198,51 +198,21 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView22"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="28dp"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/poppins_medium"
-                android:text="Ongkir"
-                android:textColor="@color/main"
-                android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView15" />
-
-            <TextView
-                android:id="@+id/ongkirDT"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="188dp"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/poppins_medium"
-                android:text="Rp 0"
-                android:textColor="@color/oren"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="@+id/subtotalDT"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/textView22"
-                app:layout_constraintTop_toBottomOf="@+id/subtotalDT" />
-
-            <TextView
                 android:id="@+id/textView24"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="28dp"
-                android:layout_marginTop="13dp"
                 android:fontFamily="@font/poppins_medium"
                 android:text="Total"
                 android:textColor="@color/main"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView22" />
+                tools:layout_editor_absoluteY="74dp" />
 
             <TextView
                 android:id="@+id/totalDT"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
                 android:fontFamily="@font/poppins_medium"
                 android:text="Rp 0"
                 android:textColor="@color/oren"
@@ -250,7 +220,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/subtotalDT"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/textView24"
-                app:layout_constraintTop_toBottomOf="@+id/ongkirDT" />
+                tools:layout_editor_absoluteY="73dp" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

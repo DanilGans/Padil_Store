@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseFirestore firestore;
     String userID;
-
     CircleImageView avatar;
 
     @Override
@@ -90,6 +89,11 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.infoNav:
                         Intent intent3 = new Intent(MainActivity.this, AboutUs.class);
                         startActivity(intent3);
+                        break;
+
+                    case R.id.historyNav:
+                        Intent intent4 = new Intent(MainActivity.this, RiwayatBelanja.class);
+                        startActivity(intent4);
                         break;
                 }
 

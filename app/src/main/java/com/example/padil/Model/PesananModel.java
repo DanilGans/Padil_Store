@@ -5,18 +5,27 @@ import java.util.ArrayList;
 
 public class PesananModel implements Serializable {
 
-    String order_id, alamat, totalharga, tanggal;
+    String id, order_id, alamat, totalharga, tanggal;
     ArrayList<String> list_produk;
 
     public PesananModel() {
     }
 
-    public PesananModel(String order_id, String alamat, String totalharga, String tanggal, ArrayList<String> list_produk) {
+    public PesananModel(String id, String order_id, String alamat, String totalharga, String tanggal, ArrayList<String> list_produk) {
+        this.id = id;
         this.order_id = order_id;
         this.alamat = alamat;
         this.totalharga = totalharga;
         this.tanggal = tanggal;
         this.list_produk = list_produk;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTanggal() {

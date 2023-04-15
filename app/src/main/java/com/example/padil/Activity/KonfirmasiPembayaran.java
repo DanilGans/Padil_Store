@@ -31,7 +31,7 @@ public class KonfirmasiPembayaran extends AppCompatActivity {
 
     Locale localeID = new Locale("in", "ID");
     NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
-    Button chatpenjual;
+    Button chatpenjual, belanjalgi;
     TextView totalharga, nomorpesanan;
     FirebaseAuth auth;
     FirebaseFirestore firestore;
@@ -43,6 +43,7 @@ public class KonfirmasiPembayaran extends AppCompatActivity {
         setContentView(R.layout.activity_konfirmasi_pembayaran);
 
         chatpenjual = findViewById(R.id.buttonKP);
+        belanjalgi = findViewById(R.id.belanjalagiBtn);
         totalharga = findViewById(R.id.totalKP);
         nomorpesanan = findViewById(R.id.nomorpesanan);
         auth = FirebaseAuth.getInstance();
@@ -76,5 +77,19 @@ public class KonfirmasiPembayaran extends AppCompatActivity {
             }
         });
 
+        belanjalgi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(KonfirmasiPembayaran.this, MainActivity.class));
+            }
+        });
+
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(KonfirmasiPembayaran.this, MainActivity.class));
     }
 }

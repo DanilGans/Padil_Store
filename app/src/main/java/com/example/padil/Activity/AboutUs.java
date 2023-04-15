@@ -24,7 +24,7 @@ public class AboutUs extends AppCompatActivity {
         nav = findViewById(R.id.bottomNavigationView);
 
         Menu menu = nav.getMenu();
-        MenuItem menuItem = menu.getItem(3);
+        MenuItem menuItem = menu.getItem(4);
         menuItem.setChecked(true);
 
         nav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -49,6 +49,11 @@ public class AboutUs extends AppCompatActivity {
 
                     case R.id.infoNav:
 
+                        break;
+
+                    case R.id.historyNav:
+                        Intent intent4 = new Intent(AboutUs.this, RiwayatBelanja.class);
+                        startActivity(intent4);
                         break;
                 }
 

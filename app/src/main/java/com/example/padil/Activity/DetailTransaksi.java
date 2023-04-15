@@ -80,7 +80,7 @@ public class DetailTransaksi extends AppCompatActivity {
 
         alamat = findViewById(R.id.alamat_user);
         subtotal = findViewById(R.id.subtotalDT);
-        ongkir = findViewById(R.id.ongkirDT);
+        //ongkir = findViewById(R.id.ongkirDT);
         total = findViewById(R.id.totalDT);
         bayar = findViewById(R.id.bayarbtnDT);
         backBtn = findViewById(R.id.backBtnDT);

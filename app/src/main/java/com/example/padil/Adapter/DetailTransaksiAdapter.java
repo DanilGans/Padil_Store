@@ -117,7 +117,6 @@ public class DetailTransaksiAdapter extends RecyclerView.Adapter<DetailTransaksi
             productImage = itemView.findViewById(R.id.product_image);
             deleteBtn = itemView.findViewById(R.id.deleteBtn);
             subtotalDT = itemView.findViewById(R.id.subtotalDT);
-            ongkirDT = itemView.findViewById(R.id.ongkirDT);
             totalDT = itemView.findViewById(R.id.totalDT);
             variasi = itemView.findViewById(R.id.variasiText);
             cicilan = itemView.findViewById(R.id.cicilanText);

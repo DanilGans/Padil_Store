@@ -13,6 +13,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Padil">
         <activity
+            android:name=".Activity.RiwayatBelanja"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.AP_TambahProduk"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.AP_DaftarProduk"
+            android:exported="false" />
+        <activity
             android:name=".Activity.AP_Produk"
             android:exported="false" />
         <activity

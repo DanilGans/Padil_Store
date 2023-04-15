@@ -10,6 +10,10 @@
         android:icon="@drawable/baseline_shopping_cart_24"
         android:id="@+id/cartNav"/>
     <item
+        android:title="Pesanan"
+        android:icon="@drawable/baseline_history_24"
+        android:id="@+id/historyNav"/>
+    <item
         android:title="User"
         android:icon="@drawable/baseline_manage_accounts_24"
         android:id="@+id/userNav"/>

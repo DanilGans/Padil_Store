@@ -56,6 +56,9 @@ dependencies {
     //ImageSlider
     implementation 'com.github.denzcoskun:ImageSlideshow:0.1.0'
 
+    //Spinner Hint
+    implementation 'me.srodrigo:androidhintspinner:1.0.0'
+
 
 
 }

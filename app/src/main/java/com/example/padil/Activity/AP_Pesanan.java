@@ -54,11 +54,14 @@ public class AP_Pesanan extends AppCompatActivity {
                             for (DocumentSnapshot doc : task.getResult().getDocuments()){
                                 PesananModel pesananModel = new PesananModel();
 
+                                String documentId = doc.getId();
+
                                 pesananModel.setOrder_id(doc.getString("order_id"));
                                 pesananModel.setAlamat(doc.getString("alamat"));
                                 pesananModel.setTotalharga(doc.getString("totalharga"));
                                 pesananModel.setList_produk((ArrayList<String>) doc.get("list_produk"));
                                 pesananModel.setTanggal(doc.getString("tanggal"));
+                                pesananModel.setId(documentId);
 
                                 pesananModelList.add(pesananModel);
                                 pesananAdapter.notifyDataSetChanged();

@@ -45,7 +45,7 @@
         android:id="@+id/editProfileBtn"
         android:layout_width="300dp"
         android:layout_height="55dp"
-        android:layout_marginBottom="0dp"
+        android:layout_marginBottom="5dp"
         android:backgroundTint="@color/main"
         android:fontFamily="@font/poppins_semibold"
         android:text="Edit Profile"

@@ -81,6 +81,7 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
                 String ava_url = value.getString("avatar");
+                String isAdmin = value.getString("isAdmin");
 
                 nama.setText(value.getString("Nama Lengkap"));
                 email.setText(value.getString("Email Address"));
@@ -88,6 +89,13 @@ public class Profile extends AppCompatActivity {
                 Glide.with(Profile.this)
                         .load(ava_url)
                         .into(imageAvatar);
+
+                if (isAdmin != null){
+                    nav.setVisibility(View.GONE);
+                    logout.setVisibility(View.GONE);
+                }else {
+                    nav.setVisibility(View.VISIBLE);
+                }
             }
         });
 
@@ -111,7 +119,7 @@ public class Profile extends AppCompatActivity {
         nav = findViewById(R.id.bottomNavigationView);
 
         Menu menu = nav.getMenu();
-        MenuItem menuItem = menu.getItem(2);
+        MenuItem menuItem = menu.getItem(3);
         menuItem.setChecked(true);
 
         nav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -136,6 +144,11 @@ public class Profile extends AppCompatActivity {
                     case R.id.infoNav:
                         Intent intent3 = new Intent(Profile.this, AboutUs.class);
                         startActivity(intent3);
+                        break;
+
+                    case R.id.historyNav:
+                        Intent intent4 = new Intent(Profile.this, RiwayatBelanja.class);
+                        startActivity(intent4);
                         break;
                 }
 

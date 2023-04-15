@@ -15,6 +15,10 @@ import com.bumptech.glide.Glide;
 import com.example.padil.Activity.DetailProduk;
 import com.example.padil.Model.SemuaProdukModel;
 import com.example.padil.R;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.NumberFormat;
 import java.util.List;
@@ -24,12 +28,16 @@ public class SemuaProdukAdapter extends RecyclerView.Adapter<SemuaProdukAdapter.
 
     Locale localeID = new Locale("in", "ID");
     NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
+    FirebaseFirestore firestore;
+    FirebaseAuth auth;
     private Context context;
     private List<SemuaProdukModel> list;
 
     public SemuaProdukAdapter(Context context, List<SemuaProdukModel> list) {
         this.context = context;
         this.list = list;
+        firestore = FirebaseFirestore.getInstance();
+        auth = FirebaseAuth.getInstance();
     }
 
     @NonNull
@@ -46,14 +54,30 @@ public class SemuaProdukAdapter extends RecyclerView.Adapter<SemuaProdukAdapter.
         holder.mTag.setText(list.get(position).getTagline());
         holder.mName.setText(list.get(position).getNama());
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, DetailProduk.class);
-                intent.putExtra("detailproduk", list.get(position));
-                context.startActivity(intent);
-            }
-        });
+        if (auth.getCurrentUser() != null){
+            firestore.collection("Users")
+                    .document(auth.getCurrentUser().getUid())
+                    .get()
+                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            if (documentSnapshot.getString("isAdmin") == null){
+                                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Intent intent = new Intent(context, DetailProduk.class);
+                                        intent.putExtra("detailproduk", list.get(position));
+                                        context.startActivity(intent);
+                                    }
+                                });
+                            }
+                            else {
+
+                            }
+                        }
+                    });
+        }
+
     }
 
     @Override
