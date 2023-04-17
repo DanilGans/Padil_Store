@@ -69,11 +69,20 @@ public class KonfirmasiPembayaran extends AppCompatActivity {
         chatpenjual.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String url = "https://wa.me/6282360130466/";
+                firestore.collection("Pesanan Masuk").document(userID)
+                        .addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                            @Override
+                            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                                String order_id = value.getString("order_id");
+                                String url = "https://wa.me/6282360130466?text=Halo,%20Saya%20telah%20melakukan%20pesanan%20dengan%20OrderID:%20"+order_id;
 
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(url));
-                startActivity(intent);
+                                Intent intent = new Intent(Intent.ACTION_VIEW);
+                                intent.setData(Uri.parse(url));
+                                startActivity(intent);
+                            }
+                        });
+
+
             }
         });
 

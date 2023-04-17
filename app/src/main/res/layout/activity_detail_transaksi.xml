@@ -202,25 +202,27 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="28dp"
+                android:layout_marginBottom="20dp"
                 android:fontFamily="@font/poppins_medium"
                 android:text="Total"
                 android:textColor="@color/main"
                 android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="74dp" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/totalDT"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
                 android:fontFamily="@font/poppins_medium"
                 android:text="Rp 0"
                 android:textColor="@color/oren"
                 android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/subtotalDT"
                 app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/textView24"
-                tools:layout_editor_absoluteY="73dp" />
+                app:layout_constraintStart_toEndOf="@+id/textView24" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
