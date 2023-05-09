@@ -7,15 +7,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.padil.Activity.DetailProduk;
 import com.example.padil.Model.SemuaProdukModel;
 import com.example.padil.R;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -70,13 +74,30 @@ public class SemuaProdukAdapter extends RecyclerView.Adapter<SemuaProdukAdapter.
                                         context.startActivity(intent);
                                     }
                                 });
-                            }
-                            else {
-
+                                holder.deleteP.setVisibility(View.GONE);
                             }
                         }
                     });
         }
+        holder.deleteP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                firestore.collection("Produk")
+                        .document(list.get(position).getDocumentId())
+                        .delete()
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()){
+                                    list.remove(position);
+                                    notifyItemRemoved(position);
+                                    Toast.makeText(context, "Berhasil menghapus produk", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+            }
+        });
+
 
     }
 
@@ -89,6 +110,7 @@ public class SemuaProdukAdapter extends RecyclerView.Adapter<SemuaProdukAdapter.
 
         private ImageView mItemImage;
         private TextView mCost, mName, mTag;
+        private AppCompatButton deleteP;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -97,6 +119,7 @@ public class SemuaProdukAdapter extends RecyclerView.Adapter<SemuaProdukAdapter.
             mCost = itemView.findViewById(R.id.item_cost);
             mTag = itemView.findViewById(R.id.item_tag);
             mName = itemView.findViewById(R.id.item_name);
+            deleteP = itemView.findViewById(R.id.hapusProduk);
         }
     }
 }

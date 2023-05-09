@@ -10,23 +10,39 @@
     app:cardCornerRadius="10dp"
     android:shadowRadius="50"
     android:padding="5dp"
-    android:layout_height="220dp">
+    android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white">
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/hapusProduk"
+            android:layout_width="60dp"
+            android:text="DELETE"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:textSize="8sp"
+            android:fontFamily="@font/poppins_semibold"
+            android:backgroundTint="@color/main"
+            android:textColor="@color/white"
+            android:layout_height="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+        </androidx.appcompat.widget.AppCompatButton>
+
+
         <ImageView
             android:id="@+id/item_image"
             android:layout_width="150dp"
             android:layout_height="118dp"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:scaleType="centerCrop"
             android:src="@drawable/brown"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"></ImageView>
+            app:layout_constraintTop_toBottomOf="@+id/hapusProduk"></ImageView>
 
         <TextView
             android:id="@+id/item_name"
@@ -63,10 +79,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="12dp"
+            android:layout_marginBottom="5dp"
             android:fontFamily="@font/poppins_medium"
             android:text="44.000 "
             android:textColor="@color/oren"
             android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/item_name" />
     </androidx.constraintlayout.widget.ConstraintLayout>

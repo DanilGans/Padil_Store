@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class SemuaProdukModel implements Serializable {
 
-    String id, deskripsi,
+    String documentId, deskripsi,
             img_url, img_url2, img_url3, img_url4, img_url5,
             img_url6, img_url7, img_url8, img_url9, img_url10,
             nama, type, brpVariant, tagline, spinnerVariasi;
@@ -13,12 +13,12 @@ public class SemuaProdukModel implements Serializable {
     public SemuaProdukModel() {
     }
 
-    public SemuaProdukModel(String id, String deskripsi,
+    public SemuaProdukModel(String documentId, String deskripsi,
                             String img_url, String img_url2, String img_url3, String img_url4, String img_url5,
                             String img_url6, String img_url7, String img_url8, String img_url9, String img_url10,
                             String nama, String type, String brpVariant, String tagline,String spinnerVariasi, int harga) {
         this.deskripsi = deskripsi;
-        this.id = id;
+        this.documentId = documentId;
         this.img_url = img_url;
         this.img_url2 = img_url2;
         this.img_url3 = img_url3;
@@ -45,12 +45,12 @@ public class SemuaProdukModel implements Serializable {
         this.spinnerVariasi = spinnerVariasi;
     }
 
-    public String getId() {
-        return id;
+    public String getDocumentId() {
+        return documentId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setDocumentId(String documentId) {
+        this.documentId = documentId;
     }
 
     public String getDeskripsi() {

@@ -33,6 +33,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import org.w3c.dom.Text;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -158,12 +160,12 @@ public class AP_TambahProduk extends AppCompatActivity {
         String kategoriProduk = spinnerKategori.getSelectedItem().toString();
 
         // Check if all the required fields are filled
-        if (!namaProduk.isEmpty()) {
+        if (TextUtils.isEmpty(namaproduk.getText().toString())) {
             namaproduk.setError("Nama produk tidak boleh kosong");
             return;
         }
 
-        if (!deskProduk.isEmpty()) {
+        if (TextUtils.isEmpty(deskproduk.getText().toString())) {
             deskproduk.setError("Deskripsi produk tidak boleh kosong");
             return;
         }
@@ -173,12 +175,12 @@ public class AP_TambahProduk extends AppCompatActivity {
             return;
         }
 
-        if (!taglineProduk.isEmpty()) {
+        if (TextUtils.isEmpty(taglineproduk.getText().toString())) {
             taglineproduk.setError("Tagline produk tidak boleh kosong");
             return;
         }
 
-        if (!kategoriProduk.isEmpty()) {
+        if (TextUtils.isEmpty(spinnerKategori.getSelectedItem().toString())) {
             Toast.makeText(this, "Silakan pilih kategori produk", Toast.LENGTH_SHORT).show();
             return;
         }

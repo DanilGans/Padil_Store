@@ -65,7 +65,10 @@ public class AP_DaftarProduk extends AppCompatActivity {
                             if (task.isSuccessful()){
                                 for (DocumentSnapshot doc : task.getResult().getDocuments()){
 
+                                    String documentId = doc.getId();
+
                                     SemuaProdukModel semuaProdukModel = doc.toObject(SemuaProdukModel.class);
+                                    semuaProdukModel.setDocumentId(documentId);
                                     semuaProdukModelList.add(semuaProdukModel);
                                     semuaProdukAdapter.notifyDataSetChanged();
                                 }
@@ -90,8 +93,10 @@ public class AP_DaftarProduk extends AppCompatActivity {
 
                             if (task.isSuccessful()){
                                 for (DocumentSnapshot doc : task.getResult().getDocuments()){
+                                    String documentId = doc.getId();
 
                                     SemuaProdukModel semuaProdukModel = doc.toObject(SemuaProdukModel.class);
+                                    semuaProdukModel.setDocumentId(documentId);
                                     semuaProdukModelList.add(semuaProdukModel);
                                     semuaProdukAdapter.notifyDataSetChanged();
                                 }
@@ -116,8 +121,10 @@ public class AP_DaftarProduk extends AppCompatActivity {
 
                             if (task.isSuccessful()){
                                 for (DocumentSnapshot doc : task.getResult().getDocuments()){
+                                    String documentId = doc.getId();
 
                                     SemuaProdukModel semuaProdukModel = doc.toObject(SemuaProdukModel.class);
+                                    semuaProdukModel.setDocumentId(documentId);
                                     semuaProdukModelList.add(semuaProdukModel);
                                     semuaProdukAdapter.notifyDataSetChanged();
                                 }
@@ -141,8 +148,10 @@ public class AP_DaftarProduk extends AppCompatActivity {
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             if (task.isSuccessful()){
                                 for (DocumentSnapshot doc : task.getResult().getDocuments()){
+                                    String documentId = doc.getId();
 
                                     SemuaProdukModel semuaProdukModel = doc.toObject(SemuaProdukModel.class);
+                                    semuaProdukModel.setDocumentId(documentId);
                                     semuaProdukModelList.add(semuaProdukModel);
                                     semuaProdukAdapter.notifyDataSetChanged();
                                 }
@@ -166,8 +175,10 @@ public class AP_DaftarProduk extends AppCompatActivity {
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             if (task.isSuccessful()){
                                 for (DocumentSnapshot doc : task.getResult().getDocuments()){
+                                    String documentId = doc.getId();
 
                                     SemuaProdukModel semuaProdukModel = doc.toObject(SemuaProdukModel.class);
+                                    semuaProdukModel.setDocumentId(documentId);
                                     semuaProdukModelList.add(semuaProdukModel);
                                     semuaProdukAdapter.notifyDataSetChanged();
                                 }
@@ -191,8 +202,10 @@ public class AP_DaftarProduk extends AppCompatActivity {
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             if (task.isSuccessful()){
                                 for (DocumentSnapshot doc : task.getResult().getDocuments()){
+                                    String documentId = doc.getId();
 
                                     SemuaProdukModel semuaProdukModel = doc.toObject(SemuaProdukModel.class);
+                                    semuaProdukModel.setDocumentId(documentId);
                                     semuaProdukModelList.add(semuaProdukModel);
                                     semuaProdukAdapter.notifyDataSetChanged();
                                 }
@@ -215,8 +228,10 @@ public class AP_DaftarProduk extends AppCompatActivity {
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             if (task.isSuccessful()) {
                                 for (DocumentSnapshot doc : task.getResult().getDocuments()) {
+                                    String documentId = doc.getId();
 
                                     SemuaProdukModel semuaProdukModel = doc.toObject(SemuaProdukModel.class);
+                                    semuaProdukModel.setDocumentId(documentId);
                                     semuaProdukModelList.add(semuaProdukModel);
                                     semuaProdukAdapter.notifyDataSetChanged();
                                 }
