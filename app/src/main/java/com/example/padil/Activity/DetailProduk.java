@@ -166,7 +166,10 @@ public class DetailProduk extends AppCompatActivity {
 
             namaProduk.setText(semuaProdukModel.getNama());
             hargaProduk.setText(formatRupiah.format((double)+semuaProdukModel.getHarga()));
-            deskripsiProduk.setText(semuaProdukModel.getDeskripsi());
+
+            String deskripsi = semuaProdukModel.getDeskripsi().replace("\\n", "\n");
+            deskripsiProduk.setText(deskripsi);
+
             totalHarga = semuaProdukModel.getHarga() * totalKuantiti;
 
         }

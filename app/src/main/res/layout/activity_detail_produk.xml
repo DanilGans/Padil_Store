@@ -1,283 +1,304 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView
+    android:id="@+id/scrollView"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Activity.DetailProduk">
+    android:layout_marginBottom="0dp"
+    android:layout_height="800dp">
 
-    <ImageView
-        android:id="@+id/backBtnDP"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/backbtnbiru" />
-
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="31dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="Detail Produk"
-        android:textColor="@color/main"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.197"
-        app:layout_constraintStart_toEndOf="@+id/backBtnDP"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginRight="15dp"
-        android:padding="10dp"
-        app:cardCornerRadius="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/backBtnDP">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        tools:context=".Activity.DetailProduk">
 
-        <HorizontalScrollView
+        <ImageView
+            android:id="@+id/backBtnDP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/backbtnbiru" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="31dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Detail Produk"
+            android:textColor="@color/main"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.197"
+            app:layout_constraintStart_toEndOf="@+id/backBtnDP"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:overScrollMode="never"
-            android:scrollbars="none">
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginRight="15dp"
+            android:padding="10dp"
+            app:cardCornerRadius="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/backBtnDP">
 
-            <LinearLayout
+            <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:orientation="horizontal">
+                android:overScrollMode="never"
+                android:scrollbars="none">
 
-                <ImageView
-                    android:id="@+id/img_produk"
-                    android:layout_width="350dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"></ImageView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:orientation="horizontal">
 
-                <ImageView
-                    android:id="@+id/img_produk2"
-                    android:layout_width="350dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:background="@drawable/noimage"></ImageView>
+                    <ImageView
+                        android:id="@+id/img_produk"
+                        android:layout_width="350dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"></ImageView>
 
-                <ImageView
-                    android:id="@+id/img_produk3"
-                    android:layout_width="350dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:background="@drawable/noimage"></ImageView>
+                    <ImageView
+                        android:id="@+id/img_produk2"
+                        android:layout_width="350dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:background="@drawable/noimage"></ImageView>
 
-                <ImageView
-                    android:id="@+id/img_produk4"
-                    android:layout_width="350dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:background="@drawable/noimage"></ImageView>
+                    <ImageView
+                        android:id="@+id/img_produk3"
+                        android:layout_width="350dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:background="@drawable/noimage"></ImageView>
 
-                <ImageView
-                    android:id="@+id/img_produk5"
-                    android:layout_width="350dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:background="@drawable/noimage"></ImageView>
+                    <ImageView
+                        android:id="@+id/img_produk4"
+                        android:layout_width="350dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:background="@drawable/noimage"></ImageView>
 
-                <ImageView
-                    android:id="@+id/img_produk6"
-                    android:layout_width="350dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:background="@drawable/noimage"></ImageView>
+                    <ImageView
+                        android:id="@+id/img_produk5"
+                        android:layout_width="350dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:background="@drawable/noimage"></ImageView>
 
-                <ImageView
-                    android:id="@+id/img_produk7"
-                    android:layout_width="350dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:background="@drawable/noimage"></ImageView>
+                    <ImageView
+                        android:id="@+id/img_produk6"
+                        android:layout_width="350dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:background="@drawable/noimage"></ImageView>
 
-                <ImageView
-                    android:id="@+id/img_produk8"
-                    android:layout_width="350dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:background="@drawable/noimage"></ImageView>
+                    <ImageView
+                        android:id="@+id/img_produk7"
+                        android:layout_width="350dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:background="@drawable/noimage"></ImageView>
 
-                <ImageView
-                    android:id="@+id/img_produk9"
-                    android:layout_width="350dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:background="@drawable/noimage"></ImageView>
+                    <ImageView
+                        android:id="@+id/img_produk8"
+                        android:layout_width="350dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:background="@drawable/noimage"></ImageView>
 
-                <ImageView
-                    android:id="@+id/img_produk10"
-                    android:layout_width="350dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:background="@drawable/noimage"></ImageView>
+                    <ImageView
+                        android:id="@+id/img_produk9"
+                        android:layout_width="350dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:background="@drawable/noimage"></ImageView>
 
-            </LinearLayout>
+                    <ImageView
+                        android:id="@+id/img_produk10"
+                        android:layout_width="350dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:background="@drawable/noimage"></ImageView>
 
-        </HorizontalScrollView>
+                </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
+            </HorizontalScrollView>
 
-    <TextView
-        android:id="@+id/nama_produk"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="Nama Produk"
-        android:textColor="@color/main"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
-
-    <TextView
-        android:id="@+id/harga_produk"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:fontFamily="@font/poppins_medium"
-        android:text="44.000"
-        android:textColor="@color/oren"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nama_produk" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:elevation="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nama_produk">
+        </androidx.cardview.widget.CardView>
 
         <TextView
+            android:id="@+id/nama_produk"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="25dp"
-            android:fontFamily="@font/poppins_medium"
-            android:text="Deskripsi"
-            android:textColor="@color/abu"
-            android:textSize="12sp"></TextView>
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Nama Produk"
+            android:textColor="@color/main"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
         <TextView
-            android:id="@+id/isi_desk"
+            android:id="@+id/harga_produk"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="35dp"
-            android:layout_marginRight="25dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginEnd="20dp"
             android:fontFamily="@font/poppins_medium"
-            android:text="Isi Deskripsi"
-            android:textColor="@color/abu"
-            android:textSize="12sp"></TextView>
+            android:text="44.000"
+            android:textColor="@color/oren"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nama_produk" />
 
-    </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:elevation="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nama_produk">
 
-    <ImageView
-        android:id="@+id/addcartbtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="65dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/cart" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="25dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Deskripsi"
+                android:textColor="@color/abu"
+                android:textSize="12sp"></TextView>
 
-    <ImageView
-        android:id="@+id/removeitem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="84dp"
-        android:layout_marginBottom="76dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/remove" />
+            <TextView
+                android:id="@+id/isi_desk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="35dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Isi Deskripsi"
+                android:textColor="@color/abu"
+                android:textSize="12sp"></TextView>
 
-    <TextView
-        android:id="@+id/kuantiti"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginBottom="76dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="1"
-        android:textColor="@color/oren"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        </androidx.cardview.widget.CardView>
 
-    <ImageView
-        android:id="@+id/additem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="76dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/add" />
+        <ImageView
+            android:id="@+id/addcartbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="70dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/variant"
+            app:srcCompat="@drawable/cart" />
 
-    <TextView
-        android:id="@+id/pilihvariant"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_medium"
-        android:text="Pilih Variant"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="20dp"
-        tools:layout_editor_absoluteY="537dp" />
+        <ImageView
+            android:id="@+id/removeitem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="84dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="76dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/variant"
+            app:srcCompat="@drawable/remove" />
 
-    <Spinner
-        android:id="@+id/spinnerVariant"
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="588dp" />
+        <TextView
+            android:id="@+id/kuantiti"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="76dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="1"
+            android:textColor="@color/oren"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/variant" />
 
-    <androidx.constraintlayout.helper.widget.Flow
-        android:id="@+id/variant"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="20dp"
-        android:orientation="vertical"
-        app:constraint_referenced_ids="pilihvariant, spinnerVariant"
-        app:flow_wrapMode="aligned"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView2" />
+        <ImageView
+            android:id="@+id/additem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="76dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/variant"
+            app:srcCompat="@drawable/add" />
 
-    <ImageButton
-        android:id="@+id/chatBtn"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="64dp"
-        android:background="@drawable/baseline_chat_24"
-        android:backgroundTint="@color/main"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/addcartbtn" />
+        <TextView
+            android:id="@+id/pilihvariant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Pilih Variant"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="20dp"
+            tools:layout_editor_absoluteY="537dp" />
+
+        <Spinner
+            android:id="@+id/spinnerVariant"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="588dp" />
+
+        <androidx.constraintlayout.helper.widget.Flow
+            android:id="@+id/variant"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="vertical"
+            app:constraint_referenced_ids="pilihvariant, spinnerVariant"
+            app:flow_wrapMode="aligned"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView2" />
+
+        <ImageButton
+            android:id="@+id/chatBtn"
+            android:layout_width="45dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="68dp"
+            android:background="@drawable/baseline_chat_24"
+            android:backgroundTint="@color/main"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/addcartbtn"
+            app:layout_constraintTop_toBottomOf="@+id/variant" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
+

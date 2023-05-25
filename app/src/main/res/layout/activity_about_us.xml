@@ -60,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="Kab. Pidie, Kec. Kembang Tanjong \n Gampong Tanjong"
+                android:text="Toko Mantap Plafon PVC didirikan pada tahun 2011 dan terletak di Kab. Pidie ,Kec. Kembang Tanjong. \nDengan adanya aplikasi penjualan dan pemasangan maka proses pengembangan teknologi usaha sudah berkembang dikala saingan.\nTerima Kasih"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="16sp"
